@@ -1,0 +1,5284 @@
+    INSTITUTE OF AERONAUTICAL ENGINEERING
+(Autonomous)
+Dundigal, Hyderabad - 500 043
+
+
+                                                                                               
+
+ 
+
+
+
+Lab Manual Handouts:
+
+ 
+ COMPUTER SYSTEM INTERNALS AND LINUX LABORATORY
+(ACSD41) BT-23      
+     				      2025-26.
+
+
+
+
+
+Prepared by
+KS R Sagar-CSILL,
+ID:IARE11024.
+
+
+
+
+
+DEPARTMENT OF INFORMATION TECHNOLOGY 
+ INSTITUTE OF AERONAUTICAL ENGINEERING
+Dec’1,2025.
+
+Week1: Basic Exercises on Linux
+Experiment 1.1 – Help and Man Pages
+Aim:
+To study and use the help, man, and info commands in Linux for understanding command usage, syntax, and options.
+________________________________________
+Objective:
+•	To learn how to access built-in help for Linux commands.
+•	To understand manual pages and their sections.
+•	To explore command options and usage examples.
+•	To become familiar with Linux documentation tools.
+________________________________________
+Software Requirement:
+•	Linux Operating System (Ubuntu / Fedora / CentOS)
+•	Bash Shell
+•	Terminal
+________________________________________
+Theory:
+Linux provides built-in documentation tools to guide users in understanding commands:
+1. help
+•	Displays help for shell built-in commands.
+•	Usage:
+•	help <command>
+2. man (manual pages)
+•	Displays detailed documentation of commands, including:
+o	Syntax
+o	Description
+o	Options
+o	Examples
+•	Usage:
+•	man <command>
+
+
+3. info
+•	Provides hyperlinked, detailed documentation.
+•	Usage:
+•	info <command>
+4. Other useful help options
+•	<command> --help → Shows quick help.
+•	man -k <keyword> → Searches for related commands.
+•	apropos <keyword> → Same as above.
+These tools help users understand Linux commands thoroughly and efficiently.
+________________________________________
+Sample Output:
+1. help command
+$ help cd
+cd: cd [-L|[-P [-e]] [-@]] [dir]
+    Change the shell working directory.
+2. man command
+$ man ls
+LS(1)           User Commands           LS(1)
+NAME
+       ls - list directory contents
+3. info command
+$ info ls
+(File opens with detailed sections)
+________________________________________
+Result:
+The Linux help system was successfully explored using the help, man, and info commands, and their usage was understood.
+________________________________________
+Viva Questions & Answers:
+
+1. What is the difference between help and man?
+Ans: help is for shell built-in commands, while man provides manual pages for system commands and utilities.
+2. How do you exit a man or info page?
+Ans: By pressing q.
+3. What does man -k do?
+Ans: Searches for commands related to a keyword (similar to apropos).
+4. What does <command> --help do?
+Ans: Displays quick usage information and available options.
+5. How do you search inside a man page?
+Ans: Press /, type the keyword, and press Enter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment 1.2 – Useful Commands / Utilities
+Aim:
+To study and practice commonly used Linux commands and utilities for file handling, directory management, process information, and system usage.
+________________________________________
+Objective:
+•	To learn essential Linux file and directory commands.
+•	To identify and use basic system utilities.
+•	To understand command options and their usage.
+•	To gain confidence in navigating the Linux environment.
+________________________________________
+Software Requirement:
+•	Linux Operating System (Ubuntu / Fedora / CentOS)
+•	Bash Shell
+•	Terminal
+________________________________________
+Theory:
+Linux provides a powerful set of commands and utilities that help users manage files, directories, processes, and system information. Some important commands include:
+
+1. File & Directory Commands
+Command	Description
+pwd	Shows present working directory
+cd	Changes directory
+ls, ls -l, ls -a	Lists files and directories
+cat	Displays file contents
+touch	Creates an empty file or updates timestamp
+mkdir	Creates a directory
+rmdir	Removes empty directory
+cp	Copies files
+mv	Moves/renames files
+rm	Removes files
+
+2. System Information Utilities
+Command	Description
+hostname	Displays system hostname
+date	Shows system date & time
+uptime	Shows running time and load
+top	Displays running processes and CPU usage
+which	Shows location of command
+whereis	Shows binary, source, and manpage of a command
+whatis	One-line description of a command
+
+3. File Searching Utilities
+Command	Description
+find	Searches files based on name, size, type
+locate	Searches file names from database
+grep	Searches text inside files
+
+4. Editors
+Command	Description
+vi / vim	Text editor
+nano	Simple editor
+gedit	GUI editor
+
+5. Programming Utilities
+Command	Description
+gcc / g++	C / C++ compiler
+make	Builds programs
+
+These tools form the foundation of Linux operations and are widely used for scripting, administration, and development.
+________________________________________
+Sample Output:
+1. pwd
+$ pwd
+/home/student
+2. ls -l
+$ ls -l
+-rw-r--r-- 1 user user  120 notes.txt
+drwxr-xr-x 2 user user 4096 docs
+3. mkdir
+$ mkdir newfolder
+4. cp
+$ cp file1.txt backupfile.txt
+5. top
+top - 10:45:12 up 1:23, 2 users, load average: 0.15, 0.11, 0.09
+________________________________________
+Result:
+Various useful Linux commands and utilities related to file handling, system management, and searching were successfully executed and understood.
+________________________________________
+Viva Questions & Answers:
+1. What is the difference between ls and ls -l?
+Ans: ls lists file names; ls -l shows detailed information like permissions, owner, size, and date.
+2. What is the use of the grep command?
+Ans: grep searches for a text pattern inside files.
+3. How is locate different from find?
+Ans: locate uses a pre-built database and is faster; find searches the file system in real time.
+4. What does the top command display?
+Ans: It shows running processes, CPU usage, memory usage, and system load.
+5. What is the purpose of the touch command?
+Ans: It creates an empty file or updates the timestamp of an existing file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment 1.3 – Pipe and Input / Output Redirection
+Aim:
+To understand and use pipe, input redirection, and output redirection operators in Linux for combining commands and managing data flow.
+________________________________________
+Objective:
+•	To learn how to redirect input and output using <, >, >>.
+•	To understand how to connect multiple commands using | (pipe).
+•	To practice real-time examples of command chaining.
+•	To understand the importance of redirection in shell scripting.
+________________________________________
+Software Requirement:
+•	Linux Operating System (Ubuntu / Fedora / CentOS)
+•	Bash Shell
+•	Terminal
+________________________________________
+Theory:
+In Linux, redirection and pipes are used to control where input comes from and where output goes.
+
+1. Input Redirection (<)
+Used to provide input to a command from a file.
+Example:
+sort < names.txt
+
+2. Output Redirection (>)
+Redirects command output to a file (overwrites file).
+Example:
+ls > list.txt
+
+3. Append Output Redirection (>>)
+Appends output to an existing file without overwriting.
+Example:
+echo "New line" >> notes.txt
+
+4. Pipe (|)
+Used to connect the output of one command to the input of another.
+Example:
+ls -l | grep ".txt"
+
+5. Combined Usage Example
+cat file.txt | grep "hello" > output.txt
+
+Redirection and pipes allow commands to work together and automate workflow efficiently.
+________________________________________
+Sample Output:
+1. Output Redirection
+$ echo "Hello Linux" > demo.txt
+$ cat demo.txt
+Hello Linux
+2. Append Output
+$ echo "Second Line" >> demo.txt
+$ cat demo.txt
+Hello Linux
+Second Line
+3. Input Redirection
+$ sort < names.txt
+sagar
+kalapala
+linus
+veda
+4. Pipe Example
+$ ls -l | grep ".txt"
+-rw-r--r-- 1 user user   50 notes.txt
+________________________________________
+Result:
+Pipes and input/output redirection commands were successfully executed. Their usage and applications were clearly understood.
+Viva Questions & Answers:
+1. What is the purpose of the pipe operator |?
+Ans: It sends the output of one command as input to another command.
+2. Difference between > and >>?
+Ans: > overwrites a file, while >> appends data to the file.
+3. What is input redirection?
+Ans: Input redirection (<) takes input for a command from a file instead of the keyboard.
+4. What command is used to combine multiple filters?
+Ans: The pipe operator (|).
+5. What does the command ls | wc -l do?
+Ans: It counts the number of files and directories in the current folder.
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Week2: Basic Exercises on Files in Linux
+Experiment 2.1 – File Handling Utilities
+Aim:
+To study and use various Linux file handling utilities for creating, viewing, copying, moving, deleting, and managing files and directories.
+________________________________________
+Objective:
+•	To understand basic file operations in Linux.
+•	To learn commands for creating, editing, and removing files.
+•	To manage directories using Linux utilities.
+•	To apply file permissions and attributes.
+________________________________________
+Theory:
+Linux provides several file-handling utilities that allow users to perform actions such as create, view, copy, move, rename, delete, and manage file permissions.
+
+1. File Creation Commands
+touch
+Creates an empty file or updates the timestamp.
+touch file1.txt
+cat
+Creates and displays files.
+cat > notes.txt
+
+2. File Viewing Commands
+cat
+Displays content of a file.
+cat file.txt
+more / less
+Shows file content page-wise.
+more file.txt  
+less file.txt
+head / tail
+Displays first or last lines.
+head file.txt  
+tail file.txt
+
+3. File Copying and Moving
+cp – Copy file
+cp file1.txt file2.txt
+mv – Move or rename file
+mv oldname.txt newname.txt
+
+4. File Deletion
+rm
+Deletes files or directories.
+rm file.txt
+rm -r folder/
+
+5. Directory Handling
+mkdir / rmdir
+Create or remove directory.
+mkdir newfolder  
+rmdir emptyfolder
+cd
+Change directory.
+cd /home/user
+pwd
+Shows current directory.
+pwd
+
+6. File Permissions
+chmod
+Used to change file permissions.
+chmod 755 script.sh
+chown
+Changes file owner.
+chown user:user file.txt
+
+These utilities are essential for managing files and directories in a Linux environment.
+________________________________________
+Sample Output:
+1. File Creation
+$ touch sample.txt
+$ ls
+sample.txt
+2. Displaying File Content
+$ cat sample.txt
+Hello Linux Users
+3. Copying File
+$ cp sample.txt backup.txt
+4. Moving / Renaming File
+$ mv backup.txt sample_backup.txt
+5. Removing File
+$ rm sample_backup.txt
+6. Checking Permissions
+$ ls -l notes.txt
+-rw-r--r-- 1 user user  25 notes.txt
+________________________________________
+Result:
+File handling utilities such as touch, cat, cp, mv, rm, mkdir, ls, and permission commands were executed successfully and their usage was understood.
+________________________________________
+Viva Questions & Answers:
+1. What is the difference between cp and mv?
+Ans: cp copies a file; mv moves or renames a file.
+2. What command is used to create an empty file?
+Ans: touch filename.
+3. What is the purpose of chmod?
+Ans: It changes file permissions (read, write, execute).
+4. How do you view only the first 10 lines of a file?
+Ans: Using head filename.
+5. What command is used to delete a directory with files in it?
+Ans: rm -r directoryname.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment 2.2 – File/Directory Ownerships and Permissions
+
+Aim:
+To understand and work with file and directory ownerships, permissions, and permission modification commands in Linux.
+________________________________________
+Objective:
+•	To study file ownership (user and group).
+•	To learn permission types: read, write, execute.
+•	To modify permissions using chmod.
+•	To change ownership using chown and chgrp.
+•	To understand symbolic and numeric mode representations.
+________________________________________
+
+Theory:
+Every file and directory in Linux has:
+1. Ownership
+There are three types of owners:
+1.	User (u) – The owner who created the file.
+2.	Group (g) – A group of users with shared permissions.
+3.	Others (o) – All system users.
+Check ownership:
+ls -l
+Example Output:
+-rw-r--r-- 1 user group 120 notes.txt
+
+2. Permissions
+Linux supports three basic permissions:
+Symbol	Meaning	For Files	For Directories
+r	Read	View content	List directory
+w	Write	Modify file	Create/Delete inside directory
+x	Execute	Run file	Enter directory
+Permissions appear as:
+rwxr-xr--
+(3 sets → user, group, others)
+
+3. Changing Permissions – chmod
+a) Symbolic Method
+chmod u+x file.txt
+chmod g-w file.txt
+chmod o+r file.txt
+chmod u=rwx,g=rx,o=r file.txt
+b) Numeric Method
+Permission	Value
+r	4
+w	2
+x	1
+Example:
+chmod 755 script.sh
+chmod 644 notes.txt
+
+4. Changing Ownership – chown
+chown user file.txt
+chown user:group file.txt
+
+5. Changing Group Ownership – chgrp
+chgrp developers project.txt
+These commands help secure files and ensure correct access control.
+________________________________________
+Sample Output:
+1. Checking Permissions
+$ ls -l report.txt
+-rw-r--r-- 1 student student 200 report.txt
+2. Changing Permissions
+$ chmod 755 script.sh
+$ ls -l script.sh
+-rwxr-xr-x 1 student student 350 script.sh
+3. Adding execute permission
+$ chmod u+x test.sh
+4. Changing Ownership
+$ sudo chown admin:staff notes.txt
+5. Changing Group
+$ chgrp developers data.txt
+________________________________________
+Result:
+The concepts of file/directory ownership, permissions, and permission modification using chmod, chown, and chgrp were successfully studied and executed.
+________________________________________
+Viva Questions & Answers:
+1. What are three types of Linux file owners?
+Ans: User, Group, and Others.
+2. What does permission 755 mean?
+Ans: User → rwx (7), Group → rx (5), Others → rx (5).
+3. What is the difference between chmod and chown?
+Ans: chmod changes permissions; chown changes ownership.
+4. What does execute permission do for a directory?
+Ans: It allows entering/traversing the directory.
+5. How do you remove write permission for group?
+Ans:
+chmod g-w filename
+
+
+
+
+
+
+Experiment 2.3 – Disk Utilities
+Aim:
+To study and use various disk-related utilities in Linux such as df, du, fdisk, mount, and umount to monitor and manage storage devices.
+________________________________________
+Objective:
+•	To understand disk usage and free space monitoring.
+•	To learn how to list and manage disk partitions.
+•	To check directory and file space usage.
+•	To mount and unmount file systems.
+•	To explore disk-related system information utilities.
+________________________________________
+Theory:
+Disk utilities in Linux help monitor disk space, manage partitions, and control file system mounting.
+
+1. df (Disk Free)
+Displays free and used disk space.
+Syntax:
+df -h
+Options:
+•	-h → human-readable (GB/MB)
+•	-T → show file system type
+
+2. du (Disk Usage)
+Shows size of files and directories.
+Syntax:
+du -sh foldername/
+Options:
+•	-s → summary
+•	-h → human-readable
+
+3. fdisk
+Displays and manages disk partitions.
+Syntax:
+sudo fdisk -l
+Operations include:
+•	Creating partitions
+•	Deleting partitions
+•	Displaying partition table
+
+4. mount
+Used to attach a file system to a directory.
+Syntax:
+sudo mount /dev/sdb1 /mnt
+
+5. umount
+Unmounts a mounted file system.
+Syntax:
+sudo umount /mnt
+
+6. lsblk (List Block Devices)
+Shows disks, partitions, and their mount points.
+Syntax:
+lsblk
+
+7. blkid
+Displays UUID and file system type.
+Syntax:
+sudo blkid
+These tools help in system administration and disk management.
+________________________________________
+Sample Output:
+1. df -h
+$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        50G   20G   28G  42% /
+2. du -sh
+$ du -sh Documents/
+150M    Documents/
+3. fdisk -l
+$ sudo fdisk -l
+Disk /dev/sda: 100 GiB
+Device      Boot  Start    End  Sectors  Size Id Type
+/dev/sda1   *      2048  999423  997376  487M 83 Linux
+4. lsblk
+$ lsblk
+NAME   SIZE TYPE MOUNTPOINT
+sda    100G disk
+├─sda1  50G part /
+└─sda2  50G part /home
+5. mount
+$ sudo mount /dev/sdb1 /mnt
+________________________________________
+Result:
+Disk utilities such as df, du, fdisk, mount, umount, lsblk, and blkid were successfully executed and their usage was clearly understood.
+________________________________________
+Viva Questions & Answers:
+1. What is the use of the df command?
+Ans: df shows available and used disk space on all mounted file systems.
+2. What is the difference between df and du?
+Ans: df shows free/used disk space on partitions, while du shows space used by files/directories.
+3. What does fdisk do?
+Ans: fdisk is used to view, create, delete, and manage disk partitions.
+4. What is the purpose of the mount command?
+Ans: It attaches a storage device or partition to a directory for access.
+5. How can you check all disks and partitions available in the system?
+Ans: By using the command lsblk.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Week3: Exercises on Process, Text, network and backup utilities -I
+Experiment: 3.1 — System and Application Software Directories
+
+Aim:
+To study and understand the structure and purpose of various system and application software directories in a Linux operating system.
+________________________________________
+Objective:
+•	To identify different directory types in Linux.
+•	To differentiate system software directories from application software directories.
+•	To understand the role of each directory and the type of files stored in it.
+________________________________________
+Theory:
+Linux follows the File system Hierarchy Standard (FHS), which organizes files in a structured directory tree starting from the root directory /.
+Important System Software Directories
+
+Directory	Description
+/bin	Basic user commands like ls, cp, mv.
+/sbin	System administration commands like fsck, reboot.
+/lib	Shared libraries needed for commands in /bin and /sbin.
+/boot	Boot loader files and kernel images.
+/etc	System configuration files such as passwd, fstab.
+/dev	Device files representing hardware devices.
+/proc	Virtual filesystem that contains process information.
+/sys	Kernel-related device and system details.
+
+
+
+Important Application Software Directories
+
+Directory	Description
+/usr	Applications, utilities, libraries, and documentation.
+/usr/bin	Executable programs installed for users.
+/usr/lib	Libraries for application software.
+/usr/share	Shared application resources.
+/usr/local	Locally installed programs not managed by the OS.
+/opt	Optional third-party software packages.
+/var	Variable files like logs, mail, cache, and spool files.
+These directories help separate system-level files from user-installed applications, making administration easier and safer.
+________________________________________
+Sample Output:
+(Example of listing Linux root directories using the ls / command)
+bin   boot   dev   etc   home   lib   media   mnt
+opt   proc   root  run   sbin   srv   sys     tmp
+usr   var
+________________________________________
+Result:
+The system and application software directory structure of Linux was successfully studied.
+All major directories were understood along with their purposes as defined by the Linux filesystem hierarchy.
+________________________________________
+Viva Questions & Answers :
+1. What is the purpose of the /bin directory?
+Ans: It contains essential user command binaries such as ls, cp, and cat.
+2. What type of files are stored in /etc?
+Ans: System configuration files for services, users, networks, and applications.
+3. What is the difference between /usr and /usr/local?
+Ans: /usr contains OS-provided applications, whereas /usr/local contains user-installed or locally compiled software.
+4. What is stored in the /var directory?
+Ans: Variable data like logs, mail, cache files, and spool directories.
+5. What is /proc used for?
+Ans: It is a virtual filesystem used to provide information about system processes and kernel parameters.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment: 3.2 — Process Utilities
+Aim:
+To study and use various Linux process utilities for viewing, managing, and controlling processes in a Linux environment.
+________________________________________
+Objective:
+•	To understand Linux process concepts.
+•	To learn commonly used process monitoring commands such as ps, top, kill, etc.
+•	To manage and terminate running processes using different command options.
+•	To identify active processes for the current user and system.
+________________________________________
+Theory:
+A process is a running instance of a program.
+Linux is a multi-process, multi-user operating system that manages many processes simultaneously.
+Common Process Utilities:
+1. ps (Process Status)
+Displays running processes.
+Command	Purpose
+ps	Shows processes of current shell/user
+ps -e	Shows all processes
+ps -ef	Full list with parent/child relationships
+ps aux	Detailed process info in BSD format
+Example output:
+USER   PID  %CPU  %MEM  COMMAND
+root   123   1.2   0.5  systemd
+user   456   0.3   1.0  bash
+2. top
+Real-time process monitoring tool.
+
+Provides:
+•	CPU usage
+•	Memory usage
+•	Running processes
+•	Priorities
+3. htop (Optional, if installed)
+More advanced and colored version of top.
+4. kill
+Terminates processes by PID.
+Command	Meaning
+kill <pid>	Gently terminate
+kill -9 <pid>	Force kill (SIGKILL)
+Example:
+kill 1234
+kill -9 4321
+5. pgrep / pkill
+Used to search or kill processes by name.
+Command	Purpose
+pgrep firefox	Find PID of firefox
+pkill firefox	Kill all firefox processes
+6. jobs, fg, bg
+Used to manage background/foreground processes in a shell.
+________________________________________
+Sample Output:
+Example commands and expected outputs:
+1. ps -ef
+UID   PID   PPID  C   STIME   TTY   TIME   CMD
+root    1     0   0   10:20    ?     00:01  systemd
+user  1250   850  0   10:35    pts/0 00:00  bash
+user  1305  1250  1   10:36    pts/0 00:03  top
+2. top
+top - 10:45:33 up  2:03,  2 users,  load average: 0.09, 0.12, 0.15
+Tasks: 205 total,   1 running, 204 sleeping
+%Cpu(s):  2.0 us,  1.0 sy,  0.0 ni, 96.0 id
+PID   USER   PR  NI  VIRT   RES  SHR  S   %CPU %MEM   TIME+   COMMAND
+1305  user   20   0  400m  8.2m 2.0m  S     3.0 0.5   0:03.45  top
+3. kill
+$ kill 1305
+(After executing: process 1305 is terminated.)
+________________________________________
+Result:
+The concepts of Linux process utilities were studied.
+Commands such as ps, top, kill, pgrep, and jobs were executed to monitor, view, and manage system processes successfully.
+________________________________________
+Viva Questions & Answers :
+1. What is a process?
+Ans: A process is a running instance of a program containing its own memory space, CPU time, and system resources.
+2. What is the use of the ps command?
+Ans: It displays information about running processes like PID, PPID, CPU usage, and associated terminal.
+3. What is the difference between ps and top?
+Ans: ps shows a static snapshot, whereas top provides a real-time, continuously updated view.
+4. What does kill -9 do?
+Ans: It sends the SIGKILL signal which forcibly terminates a process and cannot be ignored.
+5. What is the function of pgrep?
+Ans: pgrep searches and displays the PIDs of processes based on name or pattern.
+
+
+
+Experiment: 3.3 — Text Processing Utilities
+Aim:
+To study and use various text processing utilities in Linux such as cat, grep, sort, wc, uniq, cut, and tr.
+________________________________________
+Objective:
+•	To understand the usage of text manipulation commands in Linux.
+•	To learn how to view, search, filter, sort, and transform text files.
+•	To apply text processing utilities to real-time datasets or files.
+________________________________________
+Theory:
+Text processing utilities in Linux help in reading, searching, formatting, sorting, and modifying text data. These tools are essential for shell scripting, data analysis, system administration, and file management.
+Important Text Processing Utilities:
+
+1. cat (Concatenate)
+Used to display file contents.
+Examples:
+cat file.txt
+cat file1.txt file2.txt > combined.txt
+
+2. grep (Global Regular Expression Print)
+Used to search for patterns inside files.
+Examples:
+grep "error" logfile.txt
+grep -i "hello" sample.txt
+
+3. sort
+Sorts text lines alphabetically or numerically.
+Examples:
+sort names.txt
+sort -n numbers.txt
+
+4. wc (Word Count)
+Counts lines, words, and characters.
+Examples:
+wc file.txt
+wc -l file.txt   # line count
+wc -w file.txt   # word count
+
+5. uniq
+Removes duplicate lines (file must be sorted first).
+Examples:
+uniq items.txt
+sort items.txt | uniq
+
+6. cut
+Extracts specific columns from text.
+Examples:
+cut -d ":" -f 1 /etc/passwd
+cut -c 1-5 file.txt
+
+7. tr (Translate)
+Used to translate or delete characters.
+Examples:
+tr a-z A-Z < file.txt       # convert to uppercase
+tr -d "a" < file.txt        # delete character 'a'
+________________________________________
+Sample Output:
+1. Using cat
+$ cat sample.txt
+apple
+banana
+apple
+orange
+banana
+
+2. Using grep
+$ grep "apple" sample.txt
+apple
+apple
+3. Using sort
+$ sort sample.txt
+apple
+apple
+banana
+banana
+orange
+4. Using uniq
+$ sort sample.txt | uniq
+apple
+banana
+orange
+5. Using wc
+$ wc sample.txt
+5  5  32 sample.txt
+________________________________________
+Result:
+Various text processing utilities in Linux were studied and executed. Commands like cat, grep, sort, wc, uniq, cut, and tr were used to process, filter, and analyze text data successfully.
+________________________________________
+Viva Questions & Answers 
+
+1. What is the purpose of the grep command?
+Ans: It is used to search for specific patterns or text within files using regular expressions.
+2. What does the wc command do?
+Ans: It counts lines, words, and characters in a file.
+3. Why do we use sort before uniq?
+Ans: Because uniq only removes consecutive duplicate lines; hence, sorting groups duplicates together.
+4. What is the use of the cut command?
+Ans: It extracts specific fields or columns from each line in a file.
+5. What does the tr command do?
+Ans: It translates, replaces, or deletes characters from input text.
+Week4: Exercises on Process, Text, network, and backup Utilities-II
+Experiment: 4.1 — Hard Links and Symbolic Links
+Aim:
+To study and understand the creation and working of Hard Links and Symbolic (Soft) Links in a Linux operating system.
+________________________________________
+Objective:
+•	To learn the difference between hard links and symbolic links.
+•	To create and verify hard links using the ln command.
+•	To create and verify symbolic links using the ln -s command.
+•	To understand inode sharing and link behavior when files are removed or modified.
+________________________________________
+Theory:
+Linux stores files using two components:
+1.	Inode – Stores metadata and disk block information
+2.	Filename – A directory entry pointing to the inode
+1. Hard Link
+•	A hard link is an additional name for an existing file.
+•	It points directly to the same inode as the original file.
+•	Deleting the original file does not remove the data as long as a hard link exists.
+•	Hard links cannot link directories and cannot cross file systems.
+Command to create:
+ln original.txt hardlink.txt
+2. Symbolic (Soft) Link
+•	A symbolic link is like a shortcut.
+•	It stores the path of the original file.
+•	It points to the filename, not the inode.
+•	If the original file is deleted, the symlink becomes broken.
+•	Can link files, directories, and across file systems.
+Command to create:
+ln -s original.txt symlink.txt
+Differences Between Hard Link & Soft Link
+
+Feature	Hard Link	Symbolic Link
+Points to	inode	file path
+Cross-filesystem	No	Yes
+Directory linking	No	Yes
+If original deleted	Link works	Link breaks
+Size	Same as original file	Small (stores path)
+________________________________________
+Sample Output:
+1. Create a file
+$ echo "Hello Linux" > file.txt
+2. Create a Hard Link
+$ ln file.txt hard.txt
+3. Create a Soft Link
+$ ln -s file.txt soft.txt
+4. List with inode numbers
+$ ls -li
+12345 -rw-r--r-- 2 user user 12 Jan 10 file.txt
+12345 -rw-r--r-- 2 user user 12 Jan 10 hard.txt
+12346 lrwxrwxrwx 1 user user  8 Jan 10 soft.txt -> file.txt
+5. Delete original file
+$ rm file.txt
+6. Check behavior
+$ cat hard.txt
+Hello Linux
+
+$ cat soft.txt
+cat: soft.txt: No such file or directory
+Hard link still works → Soft link is broken.
+________________________________________
+Result:
+Hard links and symbolic links were successfully created and tested.
+Differences in inode usage, file behavior after deletion, and link paths were clearly observed.
+________________________________________
+Viva Questions & Answers:
+1. What is a hard link?
+Ans: A hard link is another directory entry for the same file that points to the same inode.
+2. What is a symbolic link?
+Ans: A symbolic link is a shortcut-like file containing the path to another file or directory.
+3. What happens to a hard link if the original file is deleted?
+Ans: The hard link still works because it points to the same inode.
+4. Why can’t hard links cross file systems?
+Ans: Because inodes are filesystem-specific and cannot be shared across different partitions.
+5. How can you identify a symbolic link?
+Ans: Using ls -l, it shows l at the start and contains -> indicating the target file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment: 4.2 — Network Utilities
+Aim:
+To study and use various network utilities in Linux for checking network configuration, connectivity, routing, and troubleshooting.
+________________________________________
+Objective:
+•	To understand the purpose of essential network commands.
+•	To check system network configuration and status.
+•	To verify remote host connectivity.
+•	To troubleshoot network issues using diagnostic tools.
+•	To analyze routing and DNS details.
+________________________________________
+Theory:
+Linux provides several built-in network utilities used by administrators to diagnose and manage network issues.
+The most commonly used utilities are:
+
+1. ifconfig / ip
+Displays network interface details.
+ifconfig
+ifconfig
+Shows:
+•	IP address
+•	MAC address
+•	Interface status
+•	RX/TX packets
+ip addr
+ip addr show
+A modern replacement for ifconfig.
+
+2. ping
+Tests network connectivity to a remote host.
+ping google.com
+Shows:
+•	Packet loss
+•	Latency
+•	Response time
+
+3. traceroute
+Shows the path taken by packets to reach a destination.
+traceroute google.com
+Useful for diagnosing routing issues.
+
+4. netstat / ss
+Displays network connections, listening ports, and statistics.
+netstat
+netstat -tulnp
+Shows:
+•	TCP/UDP connections
+•	Open ports
+ss (Faster version)
+ss -tuln
+
+5. nslookup / dig
+Used to query DNS servers for domain name or IP.
+nslookup
+nslookup google.com
+dig
+dig google.com
+More detailed DNS analysis.
+
+6. host
+Simple DNS lookup tool.
+host yahoo.com
+
+7. curl / wget
+Used to download data from servers.
+curl
+curl http://example.com
+wget
+wget http://example.com/file.txt
+________________________________________
+Sample Output:
+1. ip addr show
+2: eno1: <UP> mtu 1500 
+    inet 192.168.1.10/24 
+    ether 94:de:80:a2:11:b4
+2. ping google.com
+64 bytes from 142.250.193.14: icmp_seq=1 ttl=117 time=32.2 ms
+64 bytes from 142.250.193.14: icmp_seq=2 ttl=117 time=33.1 ms
+3. traceroute google.com
+1  192.168.1.1
+2  10.10.20.1
+3  bom01s10-in-f14.1e100.net
+4. nslookup google.com
+Name: google.com
+Address: 142.250.193.14
+5. netstat -tuln
+tcp  0  0 0.0.0.0:22     LISTEN
+udp  0  0 0.0.0.0:68
+________________________________________
+Result:
+Various network utilities like ip, ping, traceroute, netstat/ss, nslookup, dig, host, curl, and wget were successfully studied and executed.
+Network configuration, connectivity, routing paths, and DNS information were observed and analyzed.
+
+
+
+Viva Questions & Answers :
+
+1. What is the use of the ping command?
+Ans: It checks connectivity between the local system and a remote host using ICMP echo requests.
+2. What is the difference between ifconfig and ip?
+Ans: ip is a modern tool that provides more detailed and updated network information, replacing ifconfig.
+3. What does traceroute show?
+Ans: It displays the path (hops) taken by packets to reach a destination.
+4. What is the purpose of nslookup?
+Ans: It queries DNS to find domain-to-IP or IP-to-domain mappings.
+5. Which command displays open ports in Linux?
+Ans: netstat -tulnp or ss -tuln.
+
+
+
+
+
+
+
+
+
+
+
+Experiment: 4.3 — Tape Archive (tar) and ZIP Compression (gzip, bzip2)
+Aim:
+To study and perform file archiving using tar and file compression using gzip and bzip2 in Linux.
+________________________________________
+Objective:
+•	To understand the usage of the tar command for creating and extracting archives.
+•	To learn how to compress and decompress files using gzip and bzip2.
+•	To compare compression ratios of gzip and bzip2.
+•	To practice managing backup files in Linux.
+________________________________________
+Theory:
+Linux provides powerful tools for archiving and compressing files:
+
+1. tar (Tape Archive)
+tar is used to create, extract, and manage archive files.
+The archive created by tar is known as a tarball (.tar).
+Common tar Options
+Option	Description
+-c	Create archive
+-x	Extract archive
+-v	Verbose (show progress)
+-f	Specify filename
+-z	Compress using gzip
+-j	Compress using bzip2
+Example Commands
+Create a tar archive:
+tar -cvf backup.tar myfolder/
+Extract a tar archive:
+tar -xvf backup.tar
+Create a gzip-compressed tar archive (.tar.gz):
+tar -czvf backup.tar.gz myfolder/
+Create a bzip2-compressed tar archive (.tar.bz2):
+tar -cjvf backup.tar.bz2 myfolder/
+Extract tar.gz:
+tar -xzvf backup.tar.gz
+Extract tar.bz2:
+tar -xjvf backup.tar.bz2
+
+2. gzip Compression
+gzip compresses files using the Lempel-Ziv algorithm.
+Example Commands
+Compress a file:
+gzip file.txt
+Output → file.txt.gz
+Decompress a gzip file:
+gzip -d file.txt.gz
+or
+gunzip file.txt.gz
+
+3. bzip2 Compression
+bzip2 uses the Burrows-Wheeler algorithm, providing better compression than gzip but slower.
+Compress:
+bzip2 file.txt
+Output → file.txt.bz2
+Decompress:
+bzip2 -d file.txt.bz2
+or
+bunzip2 file.txt.bz2
+________________________________________
+Sample Output:
+1. tar archive creation
+$ tar -cvf backup.tar documents/
+documents/
+documents/file1.txt
+documents/file2.txt
+2. gzip compression
+$ gzip notes.txt
+$ ls
+notes.txt.gz
+3. bzip2 compression
+$ bzip2 report.txt
+$ ls
+report.txt.bz2
+4. Extracting tar.gz
+$ tar -xzvf backup.tar.gz
+documents/file1.txt
+documents/file2.txt
+________________________________________
+Result:
+The tar, gzip, and bzip2 utilities were successfully used to archive, compress, and extract files. Differences between gzip and bzip2 compression were studied, and various compressed formats (.tar, .tar.gz, .gz, .bz2, .tar.bz2) were created and tested.
+________________________________________
+Viva Questions & Answers :
+1. What is the purpose of the tar command?
+Ans: To create, extract, and manage archive files, often used for backups.
+2. What is the difference between tar and gzip?
+Ans: tar archives multiple files into one file, while gzip compresses a single file.
+3. Which gives better compression — gzip or bzip2?
+Ans: bzip2 provides better compression but is slower compared to gzip.
+4. How do you extract a tar.gz file?
+Ans: Using tar -xzvf filename.tar.gz.
+5. What does the option -v in tar do?
+Ans: It enables verbose mode, showing progress during archiving/extraction.
+
+
+
+
+Week5: Exercises on Shell Programming-I
+Experiment: 5.1 Displaying Files by Extension
+________________________________________
+Aim:
+To write a shell script that prompts the user to enter a file extension and displays all file names having that extension.
+________________________________________
+Objective:
+•	To understand file handling in shell scripting.
+•	To list files based on user-specified type/extension.
+•	To use basic Linux commands like ls and pattern matching.
+________________________________________
+Theory:
+In Linux, files are often identified by their extensions such as .txt, .c, .java, etc.
+Shell scripts can accept user input and perform operations like searching and displaying files.
+The wildcard operator * is used for matching filenames.
+For example:
+•	*.txt → matches all text files
+•	*.c → matches all C program files
+This script takes an extension from the user and displays all files of that type.
+________________________________________
+Program (Shell Script):
+Script Name: display_extension_files.sh
+#!/bin/bash
+
+# Prompt user to enter file extension
+echo "Enter the file extension (example: txt, c, java): "
+read ext
+
+echo "Files with extension .$ext are:"
+
+# Display matching files
+ls *.$ext 2>/dev/null
+
+# If no files found
+if [ $? -ne 0 ]; then
+    echo "No files found with extension .$ext"
+fi
+
+Steps to Execute:
+1.	Open terminal.
+2.	Create the script file:
+3.	nano display_extension_files.sh
+4.	Type the script and save it.
+5.	Give execution permission:
+6.	chmod +x display_extension_files.sh
+7.	Run the script:
+8.	./display_extension_files.sh
+________________________________________
+Sample Output:
+Case 1: Files Found
+Enter the file extension (example: txt, c, java):
+txt
+
+Files with extension .txt are:
+notes.txt
+data.txt
+report.txt
+Case 2: No Files Found
+Enter the file extension (example: txt, c, java):
+pdf
+
+Files with extension .pdf are:
+No files found with extension .pdf
+________________________________________
+Result:
+Thus, the shell script was executed successfully to display all file names of a given extension entered by the user.
+________________________________________
+ Viva Questions and Answers 
+
+1. What is the purpose of this script?
+Ans:
+To display all files in the current directory based on a user-entered file extension.
+
+2. What does *.$ext represent in the script?
+Ans:
+It is a wildcard pattern that matches all files ending with the given extension.
+
+3. Why is 2>/dev/null used in the script?
+Ans:
+To suppress error messages when no matching files are found.
+
+4. What is the use of read ext command?
+Ans:
+It takes input from the user and stores it in the variable ext.
+
+5. What does $? indicate in shell scripting?
+Ans:
+It stores the exit status of the last executed command (0 means success, non-zero means error).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Experiment: 5.2 Moving Files
+________________________________________
+Aim:
+To write a shell script that prompts the user to enter a source directory and destination directory and moves all files from the source directory to the destination directory.
+________________________________________
+Objective:
+•	To understand directory handling in shell scripting.
+•	To move files between directories using Linux commands.
+•	To practice using user input and conditional checks in shell scripts.
+________________________________________
+Theory:
+In Linux, files can be moved from one directory to another using the mv command.
+Syntax:
+mv source_path destination_path
+Shell scripts can take directory names as input from the user and perform file movement operations.
+This script:
+•	Accepts source and destination directories.
+•	Checks if directories exist.
+•	Moves all files from source to destination.
+________________________________________
+Program (Shell Script):
+Script Name: move_files.sh
+#!/bin/bash
+
+# Prompt user for source directory
+echo "Enter the source directory path: "
+read source
+
+# Prompt user for destination directory
+echo "Enter the destination directory path: "
+read destination
+
+# Check if source directory exists
+if [ ! -d "$source" ]; then
+    echo "Source directory does not exist!"
+    exit 1
+fi
+
+# Check if destination directory exists
+if [ ! -d "$destination" ]; then
+    echo "Destination directory does not exist!"
+    exit 1
+fi
+
+# Move files from source to destination
+echo "Moving files from $source to $destination..."
+
+mv "$source"/* "$destination"/ 2>/dev/null
+
+echo "Files moved successfully!"
+________________________________________
+Steps to Execute:
+1.	Open terminal.
+2.	Create the script file:
+3.	nano move_files.sh
+4.	Type the script and save it.
+5.	Provide execution permission:
+6.	chmod +x move_files.sh
+7.	Run the script:
+8.	./move_files.sh
+________________________________________
+Sample Output:
+Case 1: Successful Move
+Enter the source directory path:
+/home/user/source
+
+Enter the destination directory path:
+/home/user/destination
+
+Moving files from /home/user/source to /home/user/destination...
+Files moved successfully!
+
+Case 2: Source Directory Not Found
+Enter the source directory path:
+/abc/source
+
+Source directory does not exist!
+________________________________________
+Result:
+Thus, the shell script was executed successfully to move all files from the source directory to the destination directory.
+
+
+ Viva Questions and Answers 
+
+1. Which command is used to move files in Linux?
+Ans:
+The mv command is used to move files from one directory to another.
+
+2. What does -d option check in shell scripting?
+Ans:
+It checks whether the given path is a directory or not.
+
+3. Why do we use exit 1 in the script?
+Ans:
+To stop the script when an error occurs, such as missing directory.
+
+4. What does mv "$source"/* "$destination"/ do?
+Ans:
+It moves all files from the source directory into the destination directory.
+
+5. What is the use of 2>/dev/null in this script?
+Ans:
+It hides error messages, for example when the source directory is empty.
+
+
+
+
+
+
+
+
+Experiment: 5.3 Displaying Logged In Users
+________________________________________
+Aim:
+To write a shell script that displays all the users who are currently logged in after a specified time.
+________________________________________
+Objective:
+•	To understand user login monitoring in Linux.
+•	To display users logged in after a given time.
+•	To use commands like who, awk, and date in shell scripting.
+________________________________________
+Theory:
+Linux provides the who command to display all currently logged in users.
+Example:
+who
+Output contains:
+•	Username
+•	Terminal
+•	Login date and time
+By comparing login time with a user-specified time, we can filter and display only those users who logged in after that time.
+This experiment uses:
+•	who → list logged-in users
+•	awk → extract and compare login times
+________________________________________
+Program (Shell Script):
+Script Name: logged_users_after_time.sh
+#!/bin/bash
+
+# Prompt user to enter time
+echo "Enter the time (HH:MM format): "
+read time
+
+echo "Users logged in after $time are:"
+
+# Display logged in users after specified time
+who | awk -v t="$time" '
+{
+    login_time = $4
+    if (login_time > t)
+        print $1 " logged in at " login_time
+}'
+________________________________________
+Steps to Execute:
+1.	Open terminal.
+2.	Create the script file:
+3.	nano logged_users_after_time.sh
+4.	Type the script and save it.
+5.	Give execution permission:
+6.	chmod +x logged_users_after_time.sh
+7.	Run the script:
+8.	./logged_users_after_time.sh
+________________________________________
+Sample Output:
+Example 1:
+Enter the time (HH:MM format):
+09:00
+
+Users logged in after 09:00 are:
+sagar logged in at 09:15
+admin logged in at 10:05
+
+Example 2: No Users Found
+Enter the time (HH:MM format):
+18:00
+
+Users logged in after 18:00 are:
+(No users logged in after specified time)
+________________________________________
+Result:
+Thus, the shell script was executed successfully to display the users who logged in after the specified time.
+
+
+Viva Questions and Answers 
+
+1. What is the use of the who command?
+Ans:
+It displays the list of users currently logged into the Linux system.
+
+2. What does awk do in shell scripting?
+Ans:
+awk is used for pattern scanning and processing text data.
+
+3. Which field in who output contains login time?
+Ans:
+The 4th field contains the login time.
+
+4. Why is -v t="$time" used in awk?
+Ans:
+To pass the user-entered time value into the awk program.
+
+5. Can this script show users logged in on previous days?
+Ans:
+No, it only checks currently logged in users for the current day.
+
+
+
+
+
+
+
+
+
+
+
+
+Week6: Exercises on Shell Programming-II
+Experiment No. 6.1: Wishing User Based on Time 
+________________________________________
+Aim
+To design and execute a shell script that wishes the user based on the current system time.
+________________________________________
+Objective
+•	To learn how to access system time in Linux
+•	To understand and use conditional statements in shell scripting
+•	To display output dynamically based on time conditions
+________________________________________
+Theory
+Linux provides the date command to retrieve the current system date and time.
+By using the format specifier %H, the current hour (0–23 format) can be extracted.
+Conditional statements (if, elif, else) are used to compare the hour value and display appropriate greetings such as Good Morning, Good Afternoon, Good Evening, or Good Night.
+
+Shell Script: 
+
+#!/bin/bash
+
+# Get current hour (24-hour format)
+hour=$(date +"%H")
+
+if [ $hour -ge 5 ] && [ $hour -lt 12 ]
+then
+    echo "Good Morning!"
+elif [ $hour -ge 12 ] && [ $hour -lt 17 ]
+then
+    echo "Good Afternoon!"
+elif [ $hour -ge 17 ] && [ $hour -lt 21 ]
+then
+    echo "Good Evening!"
+else
+    echo "Good Night!"
+fi
+
+How to Execute
+chmod +x wish.sh
+./wish.sh
+
+Sample Output
+
+Good Afternoon!
+
+Result
+The shell script was executed successfully and displayed the correct greeting message based on the current system time.
+________________________________________
+Viva Questions and Answers 
+1. What command is used to get the current time in Linux?
+→ The date command is used to get the current date and time.
+2. What does %H represent in the date command?
+→ %H represents the current hour in 24-hour format (00–23).
+3. Which conditional statement is used in this experiment?
+→ if–elif–else conditional statements are used.
+4. Why is shell scripting useful in Linux?
+→ Shell scripting helps automate tasks and execute multiple commands efficiently.
+5. What is the purpose of chmod +x?
+→ It is used to give execute permission to the shell script.
+
+
+
+
+
+
+
+
+
+
+Experiment No 6.2: Searching for a Specified Word in a File
+________________________________________
+Aim
+To write and execute a shell script that searches for a specified word in a given file.
+________________________________________
+Objective
+•	To understand text searching in Linux
+•	To use the grep command for pattern matching
+•	To perform file-based search operations using shell scripting
+________________________________________
+Theory
+Linux provides the powerful grep command to search for a specific word or pattern in files.
+The grep command scans the file line by line and displays lines that contain the given word.
+It supports options such as case-insensitive search, line numbering, and whole-word matching.
+________________________________________
+Shell Script
+
+#!/bin/bash
+
+echo "Enter the filename:"
+read filename
+
+echo "Enter the word to search:"
+read word
+
+grep "$word" "$filename"
+________________________________________
+Steps to Execute
+1.	Create the file:
+2.	nano search.sh
+3.	Give execute permission:
+4.	chmod +x search.sh
+5.	Run the script:
+6.	./search.sh
+________________________________________
+Sample Output
+Enter the filename:
+data.txt
+Enter the word to search:
+Linux
+Linux is an open source operating system
+
+Result
+The shell script was executed successfully and the specified word was found and displayed from the given file.
+________________________________________
+Viva Questions and Answers 
+1. What is the use of the grep command?
+→ It is used to search for a specific word or pattern in a file.
+2. What does grep -i do?
+→ It performs a case-insensitive search.
+3. How do you search for a word with line numbers?
+→ By using grep -n word filename.
+4. Can grep search multiple files?
+→ Yes, grep can search multiple files at the same time.
+5. What happens if the word is not found?
+→ No output is displayed.
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment No 6.3: Displaying Lines Between Specified Line Numbers in a File
+________________________________________
+Aim
+To write and execute a shell script that displays lines between specified line numbers from a file.
+________________________________________
+Objective
+•	To understand file content manipulation in Linux
+•	To use text processing commands like sed and nl
+•	To extract a specific range of lines from a file
+________________________________________
+Theory
+Linux provides text processing utilities such as sed to display specific lines from a file.
+The sed command allows selecting a range of lines using the format start,endp.
+This is useful for viewing a particular portion of a file without displaying the entire content.
+________________________________________
+Shell Script (Program)
+#!/bin/bash
+
+echo "Enter the filename:"
+read filename
+
+echo "Enter starting line number:"
+read start
+
+echo "Enter ending line number:"
+read end
+
+sed -n "${start},${end}p" "$filename"
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano display.sh
+3.	Provide execute permission:
+4.	chmod +x display.sh
+5.	Run the script:
+6.	./display.sh
+________________________________________
+Sample Output
+Enter the filename:
+data.txt
+Enter starting line number:
+3
+Enter ending line number:
+6
+
+This is line 3
+This is line 4
+This is line 5
+This is line 6
+________________________________________
+Result
+The shell script was executed successfully and displayed the lines between the given line numbers successfully.
+________________________________________
+Viva Questions and Answers 
+1. What is the use of the sed command?
+→ It is used for stream editing and text manipulation.
+2. What does sed -n do?
+→ It suppresses automatic printing and displays only specified lines.
+3. What does p indicate in sed?
+→ It stands for print.
+4. Can this experiment be done using other commands?
+→ Yes, using awk or head and tail.
+5. Why is line range display useful?
+→ It helps view specific sections of large files efficiently.
+
+
+
+
+
+
+
+
+
+Week7:  Exercises on Shell Programming (Input, Decision and Loop)-I
+Experiment No 7.1: Adding Two Integers Using User Input in Shell Script
+________________________________________
+Aim
+To write and execute a shell script that accepts two integers from the user and displays their sum.
+________________________________________
+Objective
+•	To understand user input handling in shell scripting
+•	To perform arithmetic operations in Linux shell
+•	To use shell variables effectively
+________________________________________
+Theory
+Shell scripting allows arithmetic operations using operators such as +, -, *, and /.
+User input is taken using the read command.
+Arithmetic evaluation is performed using the expr command or arithmetic expansion $(( )).
+In this experiment, two integers entered by the user are added and the result is displayed.
+________________________________________
+Shell Script 
+
+#!/bin/bash
+
+echo "Enter first integer:"
+read a
+
+echo "Enter second integer:"
+read b
+
+sum=$((a + b))
+
+echo "Sum of two integers is: $sum"
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano add.sh
+3.	Give execute permission:
+4.	chmod +x add.sh
+5.	Run the script:
+6.	./add.sh
+
+Sample Output
+Enter first integer:
+10
+Enter second integer:
+20
+Sum of two integers is: 30
+________________________________________
+Result
+The shell script was executed successfully and displayed the correct sum of the two input integers.
+________________________________________
+Viva Questions and Answers 
+1. How do you take input from the user in shell scripting?
+→ By using the read command.
+2. Which operator is used for addition in shell scripting?
+→ The + operator is used for addition.
+3. What is $(( )) used for?
+→ It is used for arithmetic expansion.
+4. Can shell scripts handle floating-point numbers?
+→ No, basic shell arithmetic handles only integers.
+5. What is the use of chmod +x?
+→ It gives execute permission to the script file.
+
+
+
+
+
+
+
+
+
+Experiment No7.2: Finding Sum, Product, Minimum and Maximum of Three Numbers Using Shell Script
+________________________________________
+Aim
+To write and execute a shell script that accepts three numbers and finds their sum, product, minimum, and maximum.
+________________________________________
+Objective
+•	To perform arithmetic operations in shell scripting
+•	To use conditional statements for finding minimum and maximum values
+•	To understand user input handling in shell scripts
+________________________________________
+Theory
+Shell scripting supports arithmetic operations using arithmetic expansion $(( )).
+User input is accepted using the read command.
+Conditional statements (if–elif–else) are used to compare values and determine the minimum and maximum among the given numbers.
+This experiment demonstrates both arithmetic operations and decision-making in shell scripting.
+________________________________________
+Shell Script 
+
+#!/bin/bash
+
+echo "Enter first number:"
+read a
+echo "Enter second number:"
+read b
+echo "Enter third number:"
+read c
+
+sum=$((a + b + c))
+product=$((a * b * c))
+
+min=$a
+max=$a
+
+if [ $b -lt $min ]; then
+    min=$b
+fi
+
+if [ $c -lt $min ]; then
+    min=$c
+fi
+
+if [ $b -gt $max ]; then
+    max=$b
+fi
+
+if [ $c -gt $max ]; then
+    max=$c
+fi
+
+echo "Sum = $sum"
+echo "Product = $product"
+echo "Minimum = $min"
+echo "Maximum = $max"
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano sumprod.sh
+3.	Give execute permission:
+4.	chmod +x sumprod.sh
+5.	Run the script:
+6.	./sumprod.sh
+________________________________________
+Sample Output
+Enter first number:
+5
+Enter second number:
+3
+Enter third number:
+8
+Sum = 16
+Product = 120
+Minimum = 3
+Maximum = 8
+________________________________________
+Result
+The shell script was executed successfully and correctly displayed the sum, product, minimum, and maximum of the given three numbers.
+________________________________________
+Viva Questions and Answers 
+1. How are arithmetic operations performed in shell scripting?
+→ Using arithmetic expansion $(( )).
+2. Which command is used to accept user input?
+→ The read command.
+3. How is the minimum value found in this script?
+→ By comparing values using conditional statements.
+4. Can this script work with negative numbers?
+→ Yes, it works with both positive and negative integers.
+5. What is the purpose of if statements in this experiment?
+→ To compare values and determine minimum and maximum numbers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment No 7.3: Income Tax Calculation Using Decision Making in Shell Script
+________________________________________
+Aim
+To write and execute a shell script that calculates income tax based on the given salary using decision-making statements.
+________________________________________
+Objective
+•	To understand decision-making using if–elif–else
+•	To perform arithmetic operations in shell scripting
+•	To calculate income tax based on income slabs
+________________________________________
+Theory
+In shell scripting, decision-making is implemented using if–elif–else statements.
+Based on the income entered by the user, the script checks applicable tax slabs and calculates the tax accordingly.
+Arithmetic expansion $(( )) is used for tax calculation.
+This experiment demonstrates the practical use of conditional logic.
+
+Assumed Tax Slabs (for experiment purpose)
+Annual Income	Tax Rate
+≤ 2,50,000	No Tax
+2,50,001 – 5,00,000	5%
+5,00,001 – 10,00,000	20%
+> 10,00,000	30%
+________________________________________
+Shell Script 
+
+#!/bin/bash
+
+echo "Enter annual income:"
+read income
+
+if [ $income -le 250000 ]; then
+    tax=0
+elif [ $income -le 500000 ]; then
+    tax=$((income * 5 / 100))
+elif [ $income -le 1000000 ]; then
+    tax=$((income * 20 / 100))
+else
+    tax=$((income * 30 / 100))
+fi
+
+echo "Income Tax to be paid: Rs. $tax"
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano tax.sh
+3.	Provide execute permission:
+4.	chmod +x tax.sh
+5.	Run the script:
+6.	./tax.sh
+________________________________________
+Sample Output
+Enter annual income:
+600000
+Income Tax to be paid: Rs. 120000
+________________________________________
+Result
+The shell script was executed successfully and calculated the income tax correctly based on the given income.
+________________________________________
+Viva Questions and Answers 
+1. Which statement is used for decision making in shell scripting?
+→ if–elif–else statement.
+2. What is arithmetic expansion in shell scripting?
+→ $(( )) is used to perform arithmetic operations.
+3. Why are tax slabs used in this program?
+→ To apply different tax rates based on income range.
+4. Can this program calculate exact tax as per government rules?
+→ No, it uses assumed slabs for experimental purposes.
+5. What happens if the income is less than or equal to ₹2,50,000?
+→ No tax is applied.
+
+
+Experiment No7.4: Pension Contribution Calculator Using Decision Making and Sentinel-Controlled Loop
+________________________________________
+Aim
+To write and execute a shell script that calculates pension contribution for multiple employees using decision statements and a sentinel-controlled loop.
+________________________________________
+Objective
+•	To understand loops in shell scripting
+•	To use sentinel value for terminating a loop
+•	To apply decision making for contribution calculation
+•	To perform arithmetic operations in shell script
+________________________________________
+Theory
+A sentinel-controlled loop repeatedly executes until a specific value (sentinel) is entered by the user.
+In this experiment, employee salary is taken as input repeatedly until the sentinel value -1 is entered.
+Based on the salary, a fixed percentage is calculated as pension contribution using decision statements.
+Shell scripting supports looping using while and decision making using if–else.
+________________________________________
+Assumed Pension Rule (for experiment purpose)
+•	Pension Contribution = 10% of Salary
+•	Sentinel value = -1 (to stop the loop)
+________________________________________
+Shell Script 
+
+#!/bin/bash
+
+while true
+do
+    echo "Enter employee salary (-1 to exit):"
+    read salary
+
+    if [ $salary -eq -1 ]; then
+        echo "Program terminated."
+        break
+    fi
+
+    pension=$((salary * 10 / 100))
+    echo "Pension Contribution: Rs. $pension"
+done
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano pension.sh
+3.	Give execute permission:
+4.	chmod +x pension.sh
+5.	Run the script:
+6.	./pension.sh
+________________________________________
+Sample Output
+Enter employee salary (-1 to exit):
+30000
+Pension Contribution: Rs. 3000
+
+Enter employee salary (-1 to exit):
+45000
+Pension Contribution: Rs. 4500
+
+Enter employee salary (-1 to exit):
+-1
+Program terminated.
+________________________________________
+Result
+The shell script was executed successfully and calculated pension contribution for multiple salaries until the sentinel value was entered.
+________________________________________
+Viva Questions and Answers 
+1. What is a sentinel value?
+→ A special value used to terminate a loop.
+2. Which loop is used in this experiment?
+→ while loop.
+3. What is the purpose of break statement?
+→ It is used to exit from the loop.
+4. Which statement is used for decision making?
+→ if–else statement.
+5. Why is this called a sentinel-controlled loop?
+→ Because the loop stops execution when a sentinel value is encountered.
+
+Week8: Exercises on Shell Programming (Input, Decision and Loop)-II
+Experiment No 8.1: Sales Tax Calculation Using Decision Making and Loop in Shell Script
+________________________________________
+Aim
+To write and execute a shell script that calculates sales tax for multiple items using decision making and looping statements.
+________________________________________
+Objective
+•	To understand the use of loops in shell scripting
+•	To apply decision-making statements
+•	To calculate sales tax based on item amount
+•	To use a loop for processing multiple inputs
+________________________________________
+Theory
+Shell scripting allows repetition using loops such as while.
+Decision making is implemented using if–elif–else statements.
+In this experiment, the user enters the price of items repeatedly.
+Based on the price, sales tax is calculated using predefined tax slabs.
+The loop continues until a sentinel value is entered.
+
+Assumed Sales Tax Slabs (for experiment purpose)
+Item Price	Tax Rate
+≤ 1,000	5%
+1,001 – 5,000	10%
+> 5,000	15%
+Sentinel value: -1
+________________________________________
+Shell Script 
+
+#!/bin/bash
+
+while true
+do
+    echo "Enter item price (-1 to exit):"
+    read price
+
+    if [ $price -eq -1 ]; then
+        echo "Program terminated."
+        break
+    fi
+
+    if [ $price -le 1000 ]; then
+        tax=$((price * 5 / 100))
+    elif [ $price -le 5000 ]; then
+        tax=$((price * 10 / 100))
+    else
+        tax=$((price * 15 / 100))
+    fi
+
+    echo "Sales Tax: Rs. $tax"
+done
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano salestax.sh
+3.	Provide execute permission:
+4.	chmod +x salestax.sh
+5.	Run the script:
+6.	./salestax.sh
+________________________________________
+Sample Output
+Enter item price (-1 to exit):
+800
+Sales Tax: Rs. 40
+
+Enter item price (-1 to exit):
+3000
+Sales Tax: Rs. 300
+
+Enter item price (-1 to exit):
+7000
+Sales Tax: Rs. 1050
+
+Enter item price (-1 to exit):
+-1
+Program terminated.
+________________________________________
+Result
+The shell script was executed successfully and calculated sales tax for each item until the sentinel value was entered.
+
+
+Viva Questions and Answers 
+1. What is the use of a loop in this experiment?
+→ To calculate sales tax for multiple items repeatedly.
+2. What is a sentinel value?
+→ A special value used to terminate a loop.
+3. Which loop is used in this script?
+→ while loop.
+4. Which statement is used for decision making?
+→ if–elif–else statement.
+5. Why are tax slabs used?
+→ To apply different tax rates based on item price.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment No: 8.2: Reversing an Integer Using Loop with Modulus and Division in Shell Script
+________________________________________
+Aim
+To write and execute a shell script that reverses a given integer using loop and arithmetic operations.
+________________________________________
+Objective
+•	To understand the use of loops in shell scripting
+•	To apply modulus (%) and division (/) operators
+•	To manipulate integers using arithmetic expansion
+________________________________________
+Theory
+Reversing a number involves extracting digits from the end one by one.
+The modulus operator (%) is used to get the last digit of a number, while division (/) is used to remove the last digit.
+A loop is used to repeat this process until the number becomes zero.
+Shell scripting supports these arithmetic operations using $(( )).
+________________________________________
+Shell Script 
+
+#!/bin/bash
+
+echo "Enter an integer:"
+read num
+
+rev=0
+
+while [ $num -ne 0 ]
+do
+    rem=$((num % 10))
+    rev=$((rev * 10 + rem))
+    num=$((num / 10))
+done
+
+echo "Reversed number is: $rev"
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano reverse.sh
+3.	Provide execute permission:
+4.	chmod +x reverse.sh
+5.	Run the script:
+6.	./reverse.sh
+________________________________________
+Sample Output
+Enter an integer:
+12345
+Reversed number is: 54321
+________________________________________
+Result
+The shell script was executed successfully and correctly displayed the reverse of the given integer.
+________________________________________
+Viva Questions and Answers 
+1. Why is the modulus operator used in this program?
+→ To extract the last digit of the number.
+2. What does integer division do in this experiment?
+→ It removes the last digit of the number.
+3. Which loop is used to reverse the number?
+→ while loop.
+4. What is the initial value of the reverse variable?
+→ Zero (0).
+5. Can this program reverse negative numbers?
+→ No, it is designed for positive integers only.
+
+
+
+
+
+
+
+
+
+
+
+Experiment No 8.3: Checking Amicable Numbers Using Loop and Decision Making in Shell Script
+________________________________________
+Aim
+To write and execute a shell script to check whether two given numbers are amicable numbers.
+________________________________________
+Objective
+•	To understand the concept of amicable numbers
+•	To use loops for finding factors
+•	To apply decision-making statements
+•	To perform arithmetic operations in shell scripting
+________________________________________
+Theory
+Two numbers are said to be amicable if the sum of proper divisors of the first number is equal to the second number and vice versa.
+Proper divisors are all positive divisors of a number excluding the number itself.
+In this experiment, loops are used to find the sum of divisors and if conditions are used to compare the sums.
+Example:
+(220, 284) are amicable numbers because:
+•	Sum of proper divisors of 220 = 284
+•	Sum of proper divisors of 284 = 220
+________________________________________
+Shell Script 
+
+#!/bin/bash
+
+echo "Enter first number:"
+read a
+echo "Enter second number:"
+read b
+
+sum1=0
+sum2=0
+
+for ((i=1; i<=a/2; i++))
+do
+    if [ $((a % i)) -eq 0 ]; then
+        sum1=$((sum1 + i))
+    fi
+done
+
+for ((i=1; i<=b/2; i++))
+do
+    if [ $((b % i)) -eq 0 ]; then
+        sum2=$((sum2 + i))
+    fi
+done
+
+if [ $sum1 -eq $b ] && [ $sum2 -eq $a ]; then
+    echo "$a and $b are Amicable Numbers"
+else
+    echo "$a and $b are NOT Amicable Numbers"
+fi
+________________________________________
+Steps to Execute
+1.	Create the script file:
+2.	nano amicable.sh
+3.	Give execute permission:
+4.	chmod +x amicable.sh
+5.	Run the script:
+6.	./amicable.sh
+________________________________________
+Sample Output
+Enter first number:
+220
+Enter second number:
+284
+220 and 284 are Amicable Numbers
+________________________________________
+Result
+The shell script was executed successfully and correctly identified whether the given numbers are amicable or not.
+________________________________________
+Viva Questions and Answers 
+1. What are amicable numbers?
+→ Two numbers whose sum of proper divisors are equal to each other.
+2. What are proper divisors?
+→ Divisors of a number excluding the number itself.
+3. Why is the loop executed only up to n/2?
+→ A number cannot have proper divisors greater than half of itself.
+4. Which loop is used in this experiment?
+→ for loop.
+5. Give an example of amicable numbers.
+→ 220 and 284.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment No: 8.4: Checking Whether a Given Number is a Capricorn (Kaprekar) Number
+________________________________________
+Aim
+To write and execute a shell script to check whether a given number is a Capricorn (Kaprekar) number.
+________________________________________
+Objective
+•	To understand the concept of Capricorn (Kaprekar) numbers
+•	To use arithmetic operations and string manipulation
+•	To apply decision-making logic in shell scripting
+________________________________________
+Theory
+A Capricorn (Kaprekar) number is a number whose square can be split into two parts such that the sum of those parts equals the original number.
+Example:
+Number = 45
+Square = 2025
+Split as 20 and 25
+20 + 25 = 45 
+Hence, 45 is a Capricorn number.
+________________________________________
+Shell Script (Program)
+#!/bin/bash
+
+echo "Enter a number:"
+read num
+
+square=$((num * num))
+len=${#square}
+
+mid=$((len / 2))
+
+left=${square:0:mid}
+right=${square:mid}
+
+# Handle empty left part
+if [ -z "$left" ]; then
+    left=0
+fi
+
+sum=$((left + right))
+
+if [ $sum -eq $num ]; then
+    echo "$num is a Capricorn Number"
+else
+    echo "$num is NOT a Capricorn Number"
+fi
+________________________________________
+Steps to Execute
+1.	Create the script:
+2.	nano capricorn.sh
+3.	Give execute permission:
+4.	chmod +x capricorn.sh
+5.	Run the script:
+6.	./capricorn.sh
+________________________________________
+Sample Output
+Enter a number:
+45
+45 is a Capricorn Number
+________________________________________
+Result
+The shell script was executed successfully and correctly identified whether the given number is a Capricorn (Kaprekar) number.
+________________________________________
+Viva Questions and Answers 
+1. What is a Capricorn (Kaprekar) number?
+→ A number whose square can be split into two parts whose sum equals the original number.
+2. Give an example of a Capricorn number.
+→ 9, 45, 297.
+3. Why is the number squared in this program?
+→ Because the Kaprekar property is based on the square of the number.
+4. What is the purpose of string length calculation?
+→ To split the square into two equal parts.
+5. Which decision statement is used in this experiment?
+→ if–else statement.
+
+
+
+Week9: Exercises on Simulating commands – I
+Experiment 9.1: Simulating CAT Command
+________________________________________
+Aim
+To write a program called simulating cat command that reads the file name and displays the file content to the output stream.
+________________________________________
+Objective
+•	To understand how the Linux cat command works internally.
+•	To implement file reading using low-level system calls.
+•	To display file contents through the output stream (STDOUT).
+________________________________________
+Theory
+The Linux cat command is used to display the contents of a file on the screen.
+In this experiment, we simulate the cat command using low-level system calls:
+•	open() → opens an existing file
+•	read() → reads data from the file
+•	write() → writes data to output stream (screen)
+•	close() → closes the file
+The file is read character by character and printed to the console.
+Output stream is represented by:
+•	1 → STDOUT (standard output)
+This program behaves similar to:
+cat filename
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Read the file name from the command line arguments.
+3.	Open the file in read-only mode using open().
+4.	Check whether the file is opened successfully:
+o	If not opened, display an error message and stop.
+5.	Read one character at a time from the file using read().
+6.	Write the character to the output stream (screen) using write().
+7.	Repeat Steps (5 or 6) until the end of the file (EOF) is reached.
+8.	Close the file using close().
+9.	Stop the program.
+
+________________________________________
+Program (C Code)
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    int fd;
+    char buf;
+    int n;
+
+    // Check if filename is provided
+    if (argc < 2)
+    {
+        printf("Usage: %s <filename>\n", argv[0]);
+        return 1;
+    }
+
+    // Open file in read-only mode
+    fd = open(argv[1], O_RDONLY);
+
+    // If file not found
+    if (fd < 0)
+    {
+        printf("Error: Unable to open file!\n");
+        return 1;
+    }
+
+    printf("\n--- File Content ---\n");
+
+    // Read file character by character and display
+    while ((n = read(fd, &buf, 1)) > 0)
+    {
+        write(1, &buf, 1);   // 1 means STDOUT
+    }
+
+    close(fd); // Close file
+    return 0;
+}
+
+Steps to Execute
+1.	Open terminal.
+2.	Create the program file:
+vi catcmd.c
+3.	Compile the program:
+gcc catcmd.c -o catcmd
+4.	Run the program with filename:
+./catcmd file1.txt
+________________________________________
+Sample Output
+Input File: file1.txt
+Hello! Sagar Kalapala
+Department of Information Technology
+Computer System Internals Linux Lab
+Institution of Aeronautical Engineering
+The Institution of Engineers INDIA
+Output:
+--- File Content ---
+Hello! Sagar Kalapala
+Department of Information Technology
+Computer System Internals Linux Lab
+Institution of Aeronautical Engineering
+The Institution of Engineers INDIA
+________________________________________
+Result
+Thus, the program to simulate the Linux cat command using system calls was successfully executed and the file contents were displayed on the output stream.
+________________________________________
+Viva Questions and Answers 
+
+Q1. What is the purpose of the cat command?
+Ans:
+The cat command is used to display the contents of a file on the terminal.
+
+Q2. Which system call is used to open a file?
+Ans:
+The open() system call is used to open an existing file.
+
+Q3. What does read() do in this program?
+Ans:
+read() reads data from the file into a buffer.
+
+Q4. What does write(1, &buf, 1) mean?
+Ans:
+It writes one character from buffer to output stream.
+Here, 1 represents STDOUT (screen).
+
+Q5. Why do we close the file using close()?
+Ans:
+To release system resources and properly terminate file access.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment 9.2: Simulating CP Command
+________________________________________
+Aim
+To write a program called simulating cp command that creates a duplicate file of an existing file by reading its content and writing it into a new file.
+________________________________________
+Objective
+•	To understand how the Linux cp command works internally.
+•	To implement file copy operation using low-level system calls.
+•	To create a duplicate file by reading and writing data until end of file.
+________________________________________
+Theory
+The Linux cp command is used to copy the contents of one file into another file.
+In this experiment, we simulate cp using low-level system calls:
+•	open() → opens source file in read mode
+•	creat() or open() → creates destination file
+•	read() → reads data from source file
+•	write() → writes data into destination file
+•	close() → closes both files
+The copying process continues until the end of the file is reached.
+This program behaves similar to:
+cp sourcefile destinationfile
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Read source file name and destination file name from command line arguments.
+3.	Open the source file in read-only mode using open().
+4.	Create/Open the destination file in write mode.
+5.	Check if files are opened successfully.
+6.	Read data from source file using read().
+7.	Write the read data into destination file using write().
+8.	Repeat steps 6–7 until end of file (EOF).
+9.	Close both files.
+10.	Stop the program.
+
+Program (C Code)
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    int fd1, fd2;
+    char buf;
+    int n;
+
+    // Check arguments
+    if (argc < 3)
+    {
+        printf("Usage: %s <sourcefile> <destinationfile>\n", argv[0]);
+        return 1;
+    }
+
+    // Open source file in read mode
+    fd1 = open(argv[1], O_RDONLY);
+
+    if (fd1 < 0)
+    {
+        printf("Error: Source file not found!\n");
+        return 1;
+    }
+
+    // Create destination file
+    fd2 = open(argv[2], O_CREAT | O_WRONLY, 0777);
+
+    if (fd2 < 0)
+    {
+        printf("Error: Unable to create destination file!\n");
+        return 1;
+    }
+
+    // Copy file content character by character
+    while ((n = read(fd1, &buf, 1)) > 0)
+    {
+        write(fd2, &buf, 1);
+    }
+
+    printf("File copied successfully!\n");
+
+    close(fd1);
+    close(fd2);
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create program file:
+vi cpcmd.c
+3.	Compile the program:
+gcc cpcmd.c -o cpcmd
+4.	Run the program:
+./cpcmd file1.txt file2.txt
+________________________________________
+Sample Output
+Input File: file1.txt
+Hello! Sagar Kalapala
+Department of Information Technology
+Computer System Internals Linux Lab
+Institute of Aeronautical Engineering
+IARE-Autonomous Engineering Institution
+Jawaharlal Nehru Technological University
+National Institutional Ranking Framework
+National Board of Accreditation
+National Assessment and Accreditation Council
+University Grants Commission
+All India Council for Technical Education
+The Institution of Engineers INDIA
+Hyderabad,
+Telangana,
+India
+Academic Year: 2025–2026
+Email: ksr.sagar@iare.ac.in
+Execution:
+./cpcmd file1.txt file2.txt
+
+Output:
+File copied successfully!
+New File Created: file2.txt
+Hello! Sagar Kalapala
+Department of Information Technology
+Computer System Internals Linux Lab
+Institute of Aeronautical Engineering
+IARE-Autonomous Engineering Institution
+Jawaharlal Nehru Technological University
+National Institutional Ranking Framework
+National Board of Accreditation
+National Assessment and Accreditation Council
+University Grants Commission
+All India Council for Technical Education
+The Institution of Engineers INDIA
+Hyderabad,
+Telangana,
+India
+Academic Year: 2025–2026
+Email: ksr.sagar@iare.ac.in
+
+
+Result
+Thus, the program to simulate the Linux cp command using system calls was successfully executed and the contents of the source file were copied into the destination file.
+________________________________________
+ Viva Questions and Answers 
+
+Q1. What is the purpose of the cp command?
+Ans:
+The cp command is used to copy the contents of one file into another file.
+
+Q2. Which system calls are used in simulating cp?
+Ans:
+open(), read(), write(), and close() are used.
+
+Q3. What is the use of O_CREAT flag?
+Ans:
+O_CREAT is used to create a new file if the destination file does not exist.
+
+Q4. What happens if the source file does not exist?
+Ans:
+The program displays an error message and terminates.
+
+Q5. Why do we close both files at the end?
+Ans:
+To release system resources and ensure proper completion of file operations.
+
+
+
+
+
+ Experiment 9.3: Simulating RM Command
+________________________________________
+Aim
+To write a program called simulating rm command that removes an existing file or a group of files from a given directory.
+________________________________________
+Objective
+•	To understand how the Linux rm command works internally.
+•	To implement file deletion using system calls.
+•	To remove one or more files provided by the user.
+________________________________________
+Theory
+The Linux rm command is used to remove (delete) files from the system.
+Example:
+rm file1.txt
+rm file1.txt file2.txt
+In C programming, file removal can be done using:
+•	remove() → deletes a file
+•	unlink() → low-level system call to remove file entry
+In this experiment, we simulate rm by reading file names and deleting them.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Read file name(s) from command line arguments.
+3.	For each file name:
+o	Check whether the file exists.
+o	Delete the file using remove() or unlink().
+4.	Display success or error message.
+5.	Stop the program.
+________________________________________
+Program (C Code)
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    int i;
+
+    // Check if file names are given
+    if (argc < 2)
+    {
+        printf("Usage: %s <file1> <file2> ...\n", argv[0]);
+        return 1;
+    }
+
+    // Loop through all file arguments
+    for (i = 1; i < argc; i++)
+    {
+        if (unlink(argv[i]) == 0)
+        {
+            printf("File '%s' removed successfully.\n", argv[i]);
+        }
+        else
+        {
+            printf("Error: Unable to remove file '%s'\n", argv[i]);
+        }
+    }
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create the program file:
+	vi rmcmd.c
+3.	Compile the program:
+	gcc rmcmd.c -o rmcmd
+4.	Run the program:
+Remove single file
+	./rmcmd file1.txt
+Remove multiple files
+	./rmcmd file1.txt file2.txt file3.txt
+________________________________________
+Sample Output
+Input:
+./rmcmd a.txt b.txt
+Output:
+File 'a.txt' removed successfully.
+File 'b.txt' removed successfully.
+If file not found:
+Error: Unable to remove file 'c.txt'
+________________________________________
+Result
+Thus, the program to simulate the Linux rm command using system calls was successfully executed and the given files were removed.
+________________________________________
+ Viva Questions and Answers 
+
+Q1. What is the purpose of the rm command?
+Ans:
+The rm command is used to delete files from the system.
+
+Q2. Which system call is used to remove a file in C?
+Ans:
+unlink() is the system call used to remove a file.
+
+Q3. What is the difference between remove() and unlink()?
+Ans:
+•	remove() is a standard library function.
+•	unlink() is a low-level system call.
+
+Q4. Can rm delete directories?
+Ans:
+No, rm deletes files. To delete directories, we use:
+rm -r dirname
+
+Q5. What happens if the file does not exist?
+Ans:
+The program returns an error message saying it cannot remove the file.
+
+Experiment 9.4: Simulating LS Command
+________________________________________
+Aim
+To write a program called simulating ls command using low-level system calls, that reads a particular directory and displays the list of files, subdirectories, and executable files to the output stream.
+________________________________________
+Objective
+•	To understand how the Linux ls command works internally.
+•	To read directory contents using system calls.
+•	To display files, folders, and executable files separately.
+________________________________________
+Theory
+The Linux ls command is used to list the contents of a directory.
+Example:
+ls
+ls -l
+ls -a
+To simulate ls, we use directory handling functions:
+•	opendir() → opens a directory
+•	readdir() → reads directory entries
+•	closedir() → closes the directory
+•	stat() → provides file information (type, permissions)
+Using stat(), we can identify:
+•	Regular files
+•	Directories
+•	Executable files
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Read directory name from command line argument.
+3.	Open the directory using opendir().
+4.	Read each entry using readdir().
+5.	For each entry:
+o	Check whether it is a file, directory, or executable.
+o	Display its name.
+6.	Repeat until all entries are read.
+7.	Close the directory.
+8.	Stop the program.
+________________________________________
+Program (C Code)
+
+#include <stdio.h>
+#include <dirent.h>
+#include <sys/stat.h>
+
+int main(int argc, char *argv[])
+{
+    DIR *dp;
+    struct dirent *entry;
+    struct stat fileStat;
+
+    // Check directory argument
+    if (argc < 2)
+    {
+        printf("Usage: %s <directory_name>\n", argv[0]);
+        return 1;
+    }
+
+    // Open directory
+    dp = opendir(argv[1]);
+
+    if (dp == NULL)
+    {
+        printf("Error: Unable to open directory!\n");
+        return 1;
+    }
+
+    printf("\nContents of Directory: %s\n", argv[1]);
+    printf("---------------------------------\n");
+
+    // Read directory entries
+    while ((entry = readdir(dp)) != NULL)
+    {
+        stat(entry->d_name, &fileStat);
+
+        // Check type of entry
+        if (S_ISDIR(fileStat.st_mode))
+        {
+            printf("[DIR]  %s\n", entry->d_name);
+        }
+        else if (fileStat.st_mode & S_IXUSR)
+        {
+            printf("[EXE]  %s\n", entry->d_name);
+        }
+        else
+        {
+            printf("[FILE] %s\n", entry->d_name);
+        }
+    }
+
+    closedir(dp);
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create the program file:
+nano lscmd.c
+3.	Compile the program:
+gcc lscmd.c -o lscmd
+4.	Run the program:
+./lscmd .
+(or)
+./lscmd /home/user/Documents
+________________________________________
+Sample Output
+Input:
+./lscmd .
+Output:
+Contents of Directory: .
+---------------------------------
+[DIR]  .
+[DIR]  ..
+[FILE] file1.txt
+[FILE] notes.pdf
+[EXE]  a.out
+[DIR]  folder1
+________________________________________
+Result
+Thus, the program to simulate the Linux ls command using directory system calls was successfully executed and the list of files, directories, and executable files was displayed.
+________________________________________
+Viva Questions and Answers 
+
+Q1. What is the purpose of ls command?
+Ans:
+The ls command is used to list the contents of a directory.
+
+Q2. Which function is used to open a directory?
+Ans:
+opendir() is used to open a directory.
+
+Q3. Which function reads entries inside a directory?
+Ans:
+readdir() reads files and folders inside a directory.
+
+Q4. How do you identify whether an entry is a directory?
+Ans:
+Using:
+S_ISDIR(fileStat.st_mode)
+
+Q5. How do you check if a file is executable?
+Ans:
+By checking execute permission bit:
+fileStat.st_mode & S_IXUSR
+
+
+
+
+
+
+
+
+
+
+Week10: 10. Exercises on Simulating commands - II
+ Experiment 10.1: Simulating HEAD Command
+________________________________________
+Aim
+To write a program called simulating head command using system calls, that reads an existing file name and displays the first 10 lines of the file content to the output stream.
+________________________________________
+Objective
+•	To understand how the Linux head command works internally.
+•	To display the first 10 lines of a file using low-level system calls.
+•	To implement file reading line-by-line until 10 lines are printed.
+________________________________________
+Theory
+The Linux head command is used to display the first few lines of a file.
+Example:
+head filename.txt
+By default, it prints the first 10 lines.
+To simulate head, we use low-level system calls:
+•	open() → opens the file
+•	read() → reads data from file
+•	write() → prints data to output stream
+•	close() → closes the file
+The program counts newline characters (\n) and stops after printing 10 lines.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Read file name from command line arguments.
+3.	Open the file in read-only mode using open().
+4.	If file cannot be opened, display error and stop.
+5.	Initialize line counter to 0.
+6.	Read one character at a time using read().
+7.	Print the character using write().
+8.	If character is newline (\n), increment line counter.
+9.	Stop reading when line counter reaches 10.
+10.	Close the file.
+11.	End the program.
+________________________________________
+Program (C Code)
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    int fd;
+    char ch;
+    int lines = 0;
+
+    // Check if filename is provided
+    if (argc < 2)
+    {
+        printf("Usage: %s <filename>\n", argv[0]);
+        return 1;
+    }
+
+    // Open file in read mode
+    fd = open(argv[1], O_RDONLY);
+
+    if (fd < 0)
+    {
+        printf("Error: Unable to open file!\n");
+        return 1;
+    }
+
+    printf("\n--- First 10 Lines of File ---\n\n");
+
+    // Read file character by character
+    while (read(fd, &ch, 1) > 0)
+    {
+        write(1, &ch, 1); // Output to screen
+
+        // Count lines
+        if (ch == '\n')
+        {
+            lines++;
+        }
+
+        // Stop after 10 lines
+        if (lines == 10)
+            break;
+    }
+
+    close(fd);
+    return 0;
+}
+
+Steps to Execute
+1.	Open terminal.
+2.	Create the program file:
+vi headcmd.c
+3.	Compile the program:
+gcc headcmd.c -o headcmd
+4.	Run the program with file name:
+./headcmd file1.txt
+________________________________________
+Sample Output
+Input File: file1.txt
+Hello! Sagar Kalapala
+Department of Information Technology
+Computer System Internals Linux Lab
+Institute of Aeronautical Engineering
+IARE-Autonomous Engineering Institution
+Jawaharlal Nehru Technological University
+National Institutional Ranking Framework
+National Board of Accreditation
+National Assessment and Accreditation Council
+University Grants Commission
+All India Council for Technical Education
+The Institution of Engineers INDIA
+Hyderabad,
+Telangana,
+India
+Academic Year: 2025–2026
+Email: ksr.sagar@iare.ac.in
+Output:
+--- First 10 Lines of File ---
+
+Hello! Sagar Kalapala
+Department of Information Technology
+Computer System Internals Linux Lab
+Institute of Aeronautical Engineering
+IARE-Autonomous Engineering Institution
+Jawaharlal Nehru Technological University
+National Institutional Ranking Framework
+National Board of Accreditation
+National Assessment and Accreditation Council
+University Grants Commission
+________________________________________
+Result
+Thus, the program to simulate the Linux head command using system calls was successfully executed and the first 10 lines of the file were displayed.
+
+
+ Viva Questions and Answers 
+
+Q1. What is the purpose of head command?
+Ans:
+The head command is used to display the first few lines of a file.
+
+Q2. By default, how many lines does head display?
+Ans:
+By default, head displays the first 10 lines.
+
+Q3. Which system call is used to open a file?
+Ans:
+The open() system call is used to open a file.
+
+Q4. How does the program count lines?
+Ans:
+By counting newline characters (\n) while reading the file.
+
+Q5. Which system calls are used in this program?
+Ans:
+open(), read(), write(), and close().
+
+
+
+
+
+
+
+
+
+Experiment 10.2: Simulating TAIL Command
+________________________________________
+Aim
+To write a program called simulating tail command using system calls, that reads an existing file name and displays the last 10 lines of the file content to the output stream.
+________________________________________
+Objective
+•	To understand how the Linux tail command works internally.
+•	To display the last 10 lines of a file using low-level system calls.
+•	To implement file reading and line counting to print last lines.
+________________________________________
+Theory
+The Linux tail command is used to display the last few lines of a file.
+Example:
+tail filename.txt
+By default, it prints the last 10 lines.
+To simulate tail, we use low-level system calls:
+•	open() → opens the file
+•	read() → reads file content
+•	lseek() → moves file pointer
+•	write() → prints output
+•	close() → closes file
+The program counts total lines first, then prints the last 10 lines.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Read file name from command line argument.
+3.	Open the file in read-only mode.
+4.	Count total number of lines by reading the file.
+5.	Calculate starting line = total lines − 10.
+6.	Move file pointer to beginning.
+7.	Read file again and display lines from starting line to end.
+8.	Close the file.
+9.	Stop the program.
+Program (C Code)
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    int fd;
+    char ch;
+    int totalLines = 0, currentLine = 0;
+    int startLine;
+
+    // Check filename argument
+    if (argc < 2)
+    {
+        printf("Usage: %s <filename>\n", argv[0]);
+        return 1;
+    }
+
+    // Open file in read mode
+    fd = open(argv[1], O_RDONLY);
+
+    if (fd < 0)
+    {
+        printf("Error: Unable to open file!\n");
+        return 1;
+    }
+
+    // Step 1: Count total number of lines
+    while (read(fd, &ch, 1) > 0)
+    {
+        if (ch == '\n')
+            totalLines++;
+    }
+
+    // Decide starting line
+    if (totalLines > 10)
+        startLine = totalLines - 10;
+    else
+        startLine = 0;
+
+    // Move file pointer back to beginning
+    lseek(fd, 0, SEEK_SET);
+
+    printf("\n--- Last 10 Lines of File ---\n\n");
+
+    // Step 2: Print last 10 lines
+    while (read(fd, &ch, 1) > 0)
+    {
+        if (ch == '\n')
+            currentLine++;
+
+        if (currentLine >= startLine)
+            write(1, &ch, 1);
+    }
+
+    close(fd);
+    return 0;
+}
+Steps to Execute
+1.	Open terminal.
+2.	Create program file:
+vi tailcmd.c
+3.	Compile the program:
+gcc tailcmd.c -o tailcmd
+4.	Run the program:
+./tailcmd file1.txt
+________________________________________
+Sample Output
+Input File: file1.txt
+Hello! Sagar Kalapala
+Department of Information Technology
+Computer System Internals Linux Lab
+Institute of Aeronautical Engineering
+IARE-Autonomous Engineering Institution
+Jawaharlal Nehru Technological University
+National Institutional Ranking Framework
+National Board of Accreditation
+National Assessment and Accreditation Council
+University Grants Commission
+All India Council for Technical Education
+The Institution of Engineers INDIA
+Hyderabad,
+Telangana,
+India
+Academic Year: 2025–2026
+Email: ksr.sagar@iare.ac.in
+Output:
+--- Last 10 Lines of File ---
+
+National Board of Accreditation
+National Assessment and Accreditation Council
+University Grants Commission
+All India Council for Technical Education
+The Institution of Engineers INDIA
+Hyderabad,
+Telangana,
+India
+Academic Year: 2025–2026
+Email: ksr.sagar@iare.ac.in
+
+Result
+Thus, the program to simulate the Linux tail command using system calls was successfully executed and the last 10 lines of the file were displayed.
+
+
+
+Viva Questions and Answers 
+
+Q1. What is the purpose of tail command?
+Ans:
+The tail command is used to display the last few lines of a file.
+
+Q2. By default, how many lines does tail display?
+Ans:
+By default, tail displays the last 10 lines.
+
+Q3. Which system call is used to move the file pointer?
+Ans:
+lseek() is used to reposition the file pointer.
+
+Q4. How does the program find the last 10 lines?
+Ans:
+It first counts total lines, then prints lines starting from totalLines − 10.
+
+Q5. Which system calls are used in tail simulation?
+Ans:
+open(), read(), write(), lseek(), and close().
+
+
+
+ Experiment 10.3: Simulation of mv Command
+________________________________________
+Aim
+To write a program called simulation of mv command, which prompts the user for source file and destination file to rename a file.
+________________________________________
+Objective
+•	To understand how the Linux mv command works internally.
+•	To implement file renaming using system calls.
+•	To rename a file by moving it from source name to destination name.
+________________________________________
+Theory
+The Linux mv command is used to:
+•	Rename a file
+•	Move a file from one location to another
+Example:
+mv oldname.txt newname.txt
+In C programming, renaming can be done using:
+•	rename() → renames a file
+•	link() + unlink() → alternate low-level method
+In this experiment, we simulate mv using the rename() system call.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Prompt user for source file name.
+3.	Prompt user for destination file name.
+4.	Call rename(source, destination).
+5.	If rename is successful, display success message.
+6.	Else, display error message.
+7.	Stop the program.
+
+Program (C Code)
+
+#include <stdio.h>
+
+int main()
+{
+    char source[100], destination[100];
+
+    // Input source file name
+    printf("Enter source file name: ");
+    scanf("%s", source);
+
+    // Input destination file name
+    printf("Enter destination file name: ");
+    scanf("%s", destination);
+
+    // Rename file
+    if (rename(source, destination) == 0)
+    {
+        printf("File renamed successfully!\n");
+        printf("'%s' is now renamed as '%s'\n", source, destination);
+    }
+    else
+    {
+        printf("Error: Unable to rename file!\n");
+    }
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create program file:
+vi mvcmd.c
+3.	Compile the program:
+gcc mvcmd.c -o mvcmd
+4.	Run the program:
+./mvcmd
+________________________________________
+Sample Output
+Enter source file name: CSIT.txt
+Enter destination file name: IT.txt
+File renamed successfully!
+'CSIT.txt' is now renamed as ' IT.txt'
+If file not found:
+Enter source file name: abc.txt
+Enter destination file name: xyz.txt
+Error: Unable to rename file!
+________________________________________
+Result
+Thus, the program to simulate the Linux mv command was successfully executed and the given file was renamed.
+________________________________________
+ Viva Questions and Answers 
+
+Q1. What is the purpose of mv command?
+Ans:
+The mv command is used to move or rename files in Linux.
+
+Q2. Which function is used to rename a file in C?
+Ans:
+The rename() function is used.
+
+Q3. What happens if the source file does not exist?
+Ans:
+The rename operation fails and an error message is displayed.
+
+Q4. Can mv be used to move directories?
+Ans:
+Yes, mv can move both files and directories.
+
+Q5. What is the difference between cp and mv?
+Ans:
+•	cp creates a duplicate copy of a file.
+•	mv renames or moves the file without duplication.
+
+ Experiment 10.4: Simulation of nl Command
+________________________________________
+Aim
+To write a program called simulation of nl command, which prompts the user for a file name, reads the file line by line, and displays the line number before each line.
+________________________________________
+Objective
+•	To understand how the Linux nl command works internally.
+•	To read a file line by line.
+•	To print line numbers along with file content.
+________________________________________
+Theory
+The Linux nl command is used to display file contents with line numbers.
+Example:
+nl filename.txt
+Output:
+1  Line one
+2  Line two
+3  Line three
+In C programming, this can be implemented by:
+•	Opening the file using fopen() or open()
+•	Reading each line using fgets()
+•	Printing line numbers before each line
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Prompt user for the file name.
+3.	Open the file in read mode.
+4.	If file not found, display error and stop.
+5.	Initialize line counter to 1.
+6.	Read the file line by line.
+7.	Print line number before each line.
+8.	Increment line counter for every line.
+9.	Close the file.
+10.	Stop the program.
+Program (C Code)
+
+#include <stdio.h>
+
+int main()
+{
+    FILE *fp;
+    char filename[100];
+    char line[200];
+    int lineNumber = 1;
+
+    // Input file name
+    printf("Enter file name: ");
+    scanf("%s", filename);
+
+    // Open file in read mode
+    fp = fopen(filename, "r");
+
+    if (fp == NULL)
+    {
+        printf("Error: Unable to open file!\n");
+        return 1;
+    }
+
+    printf("\n--- File Content with Line Numbers ---\n\n");
+
+    // Read line by line
+    while (fgets(line, sizeof(line), fp) != NULL)
+    {
+        printf("%d  %s", lineNumber, line);
+        lineNumber++;
+    }
+
+    fclose(fp);
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create program file:
+vi nlcmd.c
+3.	Compile the program:
+gcc nlcmd.c -o nlcmd
+4.	Run the program:
+./nlcmd
+5.	Enter file name when prompted.
+
+Sample Output
+Input File: data.txt
+Hello Kalapala
+Welcome to Linux
+NL Command Simulation
+Execution:
+Enter file name: data.txt
+Output:
+--- File Content with Line Numbers ---
+
+1  Hello Kalapala
+2  Welcome to Linux
+3  NL Command Simulation
+________________________________________
+Result
+Thus, the program to simulate the Linux nl command was successfully executed and the file content was displayed with line numbers.
+________________________________________
+ Viva Questions and Answers 
+
+Q1. What is the purpose of nl command?
+Ans:
+The nl command is used to display file contents with line numbers.
+
+Q2. Which function is used to read a file line by line?
+Ans:
+fgets() is used to read a file line by line.
+
+Q3. What happens if the file does not exist?
+Ans:
+The program prints an error message and stops.
+
+Q4. How is line numbering done in the program?
+Ans:
+A counter variable is incremented for each line read.
+
+Q5. What is the difference between cat and nl commands?
+Ans:
+•	cat displays file content without numbering.
+•	nl displays file content with line numbers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Week11: Exercises on Signal Handling
+Experiment: 11.1 Signal Handler Function with SIGINT
+________________________________________
+Aim
+To write a C program to implement a signal handler that catches the SIGINT signal generated when the user presses Ctrl + C.
+________________________________________
+Objective
+•	To understand the concept of signals in Linux.
+•	To learn how to handle the SIGINT interrupt signal.
+•	To prevent abrupt termination of a running process when interrupted.
+________________________________________
+Theory
+A signal is a software interrupt sent to a process to notify it about an event.
+•	SIGINT stands for Signal Interrupt.
+•	It is generated when the user presses Ctrl + C.
+•	By default, SIGINT terminates the running program.
+A signal handler is a user-defined function that executes automatically when a signal is received.
+The signal() system call is used to register the handler:
+signal(SIGINT, handler_function);
+This allows the program to respond gracefully instead of stopping suddenly.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Define a signal handler function sig_handler().
+3.	Register the handler using signal(SIGINT, sig_handler).
+4.	Run an infinite loop so the program keeps executing.
+5.	When the user presses Ctrl + C, SIGINT signal is generated.
+6.	The handler function is invoked automatically.
+7.	Display the message "received SIGINT".
+8.	Stop.
+
+Program (C Code)
+
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+/* Signal handler function */
+void sig_handler(int signo)
+{
+    if (signo == SIGINT)
+    {
+        printf("\nreceived SIGINT\n");
+    }
+}
+
+int main()
+{
+    /* Register signal handler */
+    if (signal(SIGINT, sig_handler) == SIG_ERR)
+    {
+        printf("can't catch SIGINT\n");
+    }
+
+    /* Infinite loop */
+    while (1)
+    {
+        sleep(1);
+    }
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create a C file:
+3.	vi signalpg.c
+4.	Type the program and save the file.
+5.	Compile the program:
+6.	gcc signalpg.c -o sp
+7.	Run the executable file:
+8.	./sp
+9.	Press Ctrl + C to generate SIGINT signal.
+________________________________________
+Sample Output
+$ gcc signalpg.c -o sp
+$ ./sp
+
+^C
+received SIGINT
+
+Result
+Thus, the C program successfully caught the SIGINT signal using a signal handler function and displayed the interrupt message instead of terminating immediately.
+________________________________________
+Viva Questions and Answers 
+1. What is SIGINT?
+SIGINT is an interrupt signal generated when the user presses Ctrl + C.
+
+2. What is the purpose of signal handling?
+Signal handling helps the process respond gracefully to interrupts and unexpected events.
+
+3. Which function is used to catch signals in C?
+The signal() function is used to catch and handle signals.
+
+4. What happens if SIGINT is not handled?
+The program terminates immediately when Ctrl + C is pressed.
+
+5. What is a signal handler?
+A signal handler is a user-defined function that executes automatically when a signal is received.
+
+
+
+
+
+
+Experiment: 11.2 Signal Handler Function with SIGDFL
+________________________________________
+Aim
+To write a C program to handle the SIGINT signal using SIG_DFL, which performs the default action of terminating the process when Ctrl + C is pressed.
+________________________________________
+Objective
+•	To understand the default behavior of signals in Linux.
+•	To learn the use of SIG_DFL in signal handling.
+•	To observe process termination when SIGINT occurs.
+________________________________________
+Theory
+In Linux/Unix, signals are software interrupts delivered to processes.
+•	SIGINT is generated when the user presses Ctrl + C.
+•	Normally, SIGINT terminates the program.
+SIG_DFL
+•	SIG_DFL is a predefined macro.
+•	It represents the default action of a signal.
+•	When SIGINT is set to SIG_DFL, the process terminates automatically.
+Example:
+signal(SIGINT, SIG_DFL);
+So, pressing Ctrl + C will stop the program immediately.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Register SIGINT signal with SIG_DFL.
+3.	Run the program in an infinite loop.
+4.	Wait for the user to press Ctrl + C.
+5.	When SIGINT occurs, the default action is executed.
+6.	The process terminates automatically.
+
+Program (C Code)
+
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+int main()
+{
+    /* Setting SIGINT to default action */
+    if (signal(SIGINT, SIG_DFL) == SIG_ERR)
+    {
+        printf("Can't catch SIGINT\n");
+    }
+
+    printf("Program is running...\n");
+    printf("Press Ctrl + C to terminate the process.\n");
+
+    /* Infinite loop */
+    while (1)
+    {
+        sleep(1);
+    }
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create the program file:
+3.	vi sigdfl.c
+4.	Type the program and save it.
+5.	Compile the program:
+6.	gcc sigdfl.c -o sd
+7.	Run the program:
+8.	./sd
+9.	Press Ctrl + C → Program terminates automatically.
+________________________________________
+Sample Output
+$ gcc sigdfl.c -o sd
+$ ./sd
+Program is running...
+Press Ctrl + C to terminate the process.
+
+^C
+(Process terminated)
+________________________________________
+Result
+Thus, the program successfully demonstrated the use of SIG_DFL, where pressing Ctrl + C executes the default action and terminates the process.
+
+Viva Questions and Answers 
+1. What is SIG_DFL?
+SIG_DFL is a macro that specifies the default action for a signal.
+
+2. What is the default action of SIGINT?
+The default action of SIGINT is to terminate the process.
+
+3. What happens when SIGINT is set to SIG_DFL?
+The program terminates immediately when Ctrl + C is pressed.
+
+4. Which function is used to set default signal action?
+The signal() function is used:
+signal(SIGINT, SIG_DFL);
+
+5. What is the difference between SIG_DFL and a custom handler?
+•	Custom handler executes user-defined code.
+•	SIG_DFL executes the system’s default action (terminate/ignore).
+
+
+
+
+
+
+
+
+Experiment: 11.3 Signal Handler Function with SIGKILL
+________________________________________
+Aim
+To write a C program to demonstrate signal handling and understand the behavior of SIGKILL, which cannot be caught or ignored.
+________________________________________
+Objective
+•	To understand the concept of SIGKILL signal in Linux.
+•	To learn why SIGKILL cannot be handled using signal handlers.
+•	To observe forced termination of a process.
+________________________________________
+Theory
+Signals are software interrupts sent to processes.
+SIGKILL
+•	SIGKILL is a special signal used to immediately terminate a process.
+•	It is the strongest termination signal.
+•	The operating system stops the process forcefully.
+Key Property: 
+SIGKILL cannot be caught, ignored, or handled.
+Even if we try:
+signal(SIGKILL, handler); It will not work.
+SIG_IGN
+•	SIG_IGN is used to ignore signals.
+•	But SIGKILL cannot be ignored.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Try registering SIGKILL with SIG_IGN.
+3.	Run the program continuously.
+4.	From another terminal, send SIGKILL using the kill command.
+5.	The process terminates immediately.
+
+Program (C Code)
+
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+int main()
+{
+    /* Trying to ignore SIGKILL (This will not work) */
+    if (signal(SIGKILL, SIG_IGN) == SIG_ERR)
+    {
+        printf("Cannot catch or ignore SIGKILL\n");
+    }
+
+    printf("Program is running...\n");
+    printf("SIGKILL cannot be handled or ignored.\n");
+    printf("Use: kill -9 <pid> to terminate the process.\n");
+
+    while (1)
+    {
+        sleep(1);
+    }
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create the file:
+3.	vi sigkill.c
+4.	Type the program and save.
+5.	Compile:
+6.	gcc sigkill.c -o sk
+7.	Run the program:
+8.	./sk
+9.	Find the process ID in another terminal:
+10.	ps -e | grep sk
+11.	Kill the process using SIGKILL:
+12.	kill -9 <pid>
+13.	Perform the experiment under my supervision.________________________________________
+Sample Output
+Terminal 1:
+$ ./sk
+Program is running...
+SIGKILL cannot be handled or ignored.
+Use: kill -9 <pid> to terminate the process.
+Terminal 2:
+$ kill -9 2456
+(Process terminated immediately)
+
+Result
+Thus, the program demonstrated that SIGKILL cannot be caught, blocked, or ignored, and it always terminates the process forcefully.
+________________________________________
+Viva Questions and Answers 
+1. What is SIGKILL?
+SIGKILL is a signal used to forcefully terminate a process immediately.
+
+2. Can SIGKILL be caught using a signal handler?
+No, SIGKILL cannot be caught, blocked, or ignored.
+
+3. What is the command used to send SIGKILL?
+The command is:
+kill -9 <pid>
+
+4. What is the difference between SIGINT and SIGKILL?
+•	SIGINT can be handled using a signal handler.
+•	SIGKILL cannot be handled and always terminates the process.
+
+5. What does SIG_IGN mean?
+SIG_IGN means ignoring a signal, but SIGKILL cannot be ignored.
+
+
+
+
+
+
+Week12: Exercises on Inter Process Communication (IPC)
+Experiment: 12.1 One Way Communication Using Pipe
+________________________________________
+Aim
+To write a C program to implement one-way communication between parent and child processes using a pipe.
+________________________________________
+Objective
+•	To understand the concept of Inter Process Communication (IPC).
+•	To learn how to use the pipe() system call.
+•	To transfer data from parent process to child process using a pipe.
+•	To understand the role of fork() in process creation.
+________________________________________
+Theory
+A pipe is an IPC mechanism used for communication between related processes.
+•	A pipe provides a unidirectional data channel.
+•	Data written at one end can be read from the other end.
+Pipe Characteristics:
+•	Created using:
+pipe(fd);
+•	fd[0] → Read end
+•	fd[1] → Write end
+Process Creation:
+•	fork() creates a child process.
+•	Parent writes data into the pipe.
+•	Child reads data from the pipe.
+Thus, communication happens in one direction.
+
+
+Algorithm
+1.	Start the program.
+2.	Declare an integer array fd[2] for pipe descriptors.
+3.	Create a pipe using pipe(fd).
+4.	Create a child process using fork().
+5.	Parent process:
+o	Close read end fd[0].
+o	Write message into fd[1].
+6.	Child process:
+o	Close write end fd[1].
+o	Read message from fd[0].
+o	Display the received message.
+7.	Stop the program.
+________________________________________
+Program (C Code)
+
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
+int main()
+{
+    int fd[2];          // Pipe file descriptors
+    char write_msg[] = "Hello Kalapala from Parent Process!";
+    char read_msg[100];
+
+    // Create pipe
+    if (pipe(fd) == -1)
+    {
+        printf("Pipe creation failed\n");
+        return 1;
+    }
+
+    // Create child process
+    pid_t pid = fork();
+
+    if (pid < 0)
+    {
+        printf("Fork failed\n");
+        return 1;
+    }
+
+    // Parent process
+    if (pid > 0)
+    {
+        close(fd[0]); // Close read end
+
+        write(fd[1], write_msg, strlen(write_msg) + 1);
+        printf("Parent sent message: %s\n", write_msg);
+
+        close(fd[1]); // Close write end
+    }
+
+    // Child process
+    else
+    {
+        close(fd[1]); // Close write end
+
+        read(fd[0], read_msg, sizeof(read_msg));
+        printf("Child received message: %s\n", read_msg);
+
+        close(fd[0]); // Close read end
+    }
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+1.	Open terminal.
+2.	Create the program file:
+3.	vi pipepg.c
+4.	Type the above code and save.
+5.	Compile the program:
+6.	gcc pipepg.c -o pp
+7.	Run the executable:
+8.	./pp
+________________________________________
+Sample Output
+$ gcc pipepg.c -o pp
+$ ./pp
+
+Parent sent message: Hello Kalapala from Parent Process!
+Child received message: Hello Kalapala from Parent Process!
+________________________________________
+Result
+Thus, the program successfully implemented one-way communication between parent and child processes using a pipe.
+________________________________________
+Viva Questions and Answers 
+1. What is a pipe in Linux?
+A pipe is an IPC mechanism used for communication between related processes.
+
+2. What are the two ends of a pipe?
+•	fd[0] → Read end
+•	fd[1] → Write end
+
+3. Why is fork() used in pipe communication?
+fork() creates a child process so that communication can occur between parent and child.
+
+4. Is pipe communication one-way or two-way?
+A single pipe supports only one-way (unidirectional) communication.
+
+5. What happens if we don’t close unused ends of a pipe?
+It may cause deadlock or the process may wait indefinitely for EOF.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment: 12.2 One Way Communication Using FIFO Function
+________________________________________
+Aim
+To write a C program to implement one-way communication between two unrelated processes using the FIFO (Named Pipe) mechanism.
+________________________________________
+Objective
+•	To understand IPC using FIFO (First In First Out).
+•	To learn how to create a FIFO file using mkfifo().
+•	To transfer data between unrelated processes.
+•	To implement Producer and Consumer communication.
+________________________________________
+Theory
+A FIFO (Named Pipe) is a special file used for communication between processes.
+•	Unlike ordinary pipes, FIFO can communicate between unrelated processes.
+•	FIFO exists as a file in the file system.
+FIFO Creation:
+mkfifo("fifo_name", 0666);
+Communication:
+•	One process writes data into FIFO (Producer).
+•	Another process reads data from FIFO (Consumer).
+Important System Calls:
+•	mkfifo() → Create FIFO file
+•	open() → Open FIFO for read/write
+•	write() → Write message
+•	read() → Read message
+________________________________________
+Algorithm
+Producer Process:
+1.	Create FIFO using mkfifo().
+2.	Open FIFO in write mode.
+3.	Read input message from user.
+4.	Write message into FIFO.
+5.	Close FIFO.
+Consumer Process:
+1.	Open FIFO in read mode.
+2.	Read message from FIFO.
+3.	Display the received message.
+4.	Close FIFO.
+________________________________________
+Program (C Code)
+Producer Program (producer.c)/Tx
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#define FIFO_NAME "myfifo"
+
+int main()
+{
+    int fd;
+    char write_msg[100];
+
+    // Create FIFO file
+    mkfifo(FIFO_NAME, 0666);
+
+    printf("Producer: Enter message to send: ");
+    fgets(write_msg, sizeof(write_msg), stdin);
+
+    // Open FIFO in write mode
+    fd = open(FIFO_NAME, O_WRONLY);
+
+    // Write message into FIFO
+    write(fd, write_msg, sizeof(write_msg));
+
+    printf("Producer sent: %s", write_msg);
+
+    close(fd);
+
+    return 0;
+}
+________________________________________
+Consumer Program (consumer.c)/Rx
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#define FIFO_NAME "myfifo"
+
+int main()
+{
+    int fd;
+    char read_msg[100];
+
+    // Open FIFO in read mode
+    fd = open(FIFO_NAME, O_RDONLY);
+
+    // Read message from FIFO
+    read(fd, read_msg, sizeof(read_msg));
+
+    printf("Consumer received: %s", read_msg);
+
+    close(fd);
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+Step 1: Create Producer and Consumer Files
+1.	Create producer file:
+2.	vi producer.c
+3.	Create consumer file:
+4.	vi consumer.c
+
+Step 2: Compile Both Programs
+gcc producer.c -o producer
+gcc consumer.c -o consumer
+
+Step 3: Run Programs in Two Terminals
+
+Terminal 1 (Consumer):
+./consumer
+
+Terminal 2 (Producer):
+./producer
+Enter message:
+iare FIFO Communication
+________________________________________
+Sample Output
+Terminal 2 (Producer)
+Producer: Enter message to send: iare FIFO Communication
+Producer sent: iare FIFO Communication
+
+Terminal 1 (Consumer)
+Consumer received: iare FIFO Communication
+
+Result
+Thus, the program successfully demonstrated one-way communication between two unrelated processes using the FIFO (Named Pipe) mechanism.
+________________________________________
+Viva Questions and Answers 
+1. What is FIFO in Linux?
+FIFO is a named pipe used for communication between unrelated processes.
+
+2. Which function is used to create FIFO?
+The mkfifo() function is used.
+
+3. Difference between Pipe and FIFO?
+•	Pipe → works only between related processes
+•	FIFO → works between unrelated processes
+
+4. What are the modes of FIFO communication?
+FIFO supports read and write modes using open().
+
+5. Where does FIFO exist?
+FIFO exists as a special file in the file system until deleted.
+
+
+
+
+
+
+Experiment: 12.3 Storing Messages in Message Queues (Sender) 
+________________________________________
+Aim
+To write a C program (sender.c) to create a message queue and store (send) three messages in sequential order.
+________________________________________
+Objective
+•	To understand the concept of Message Queues in IPC.
+•	To learn how to create a message queue using msgget().
+•	To send messages using msgsnd().
+•	To store multiple messages with proper sequence order.
+________________________________________
+Theory
+A Message Queue is an IPC mechanism that allows processes to exchange data in the form of messages.
+•	Messages are stored in a queue until the receiving process reads them.
+•	Communication can occur between unrelated processes.
+Important Functions:
+•	ftok() → Generates a unique key
+•	msgget() → Creates or accesses a message queue
+•	msgsnd() → Sends a message to the queue
+•	msgrcv() → Receives a message from the queue
+•	msgctl() → Controls or deletes the queue
+Message Structure:
+struct msg_buffer {
+    long msg_type;
+    char msg_text[100];
+};
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Generate a unique key using ftok().
+3.	Create a message queue using msgget().
+4.	Define a message structure.
+5.	Repeat 3 times:
+o	Read message input from user
+o	Assign message type
+o	Send message using msgsnd()
+6.	Display confirmation for each message sent.
+7.	Stop.
+________________________________________
+Program (sender.c Code)
+
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <string.h>
+
+// Message structure
+struct msg_buffer
+{
+    long msg_type;
+    char msg_text[100];
+};
+
+int main()
+{
+    key_t key;
+    int msgid;
+    struct msg_buffer message;
+
+    // Generate unique key
+    key = ftok("progfile", 65);
+
+    // Create message queue with read and write permissions
+    msgid = msgget(key, 0666 | IPC_CREAT);
+
+    printf("Message Queue Created Successfully...\n");
+
+    // Send 3 messages in sequence
+    for (int i = 1; i <= 3; i++)
+    {
+        message.msg_type = i;
+
+        printf("Enter Message %d: ", i);
+        fgets(message.msg_text, sizeof(message.msg_text), stdin);
+
+        // Send message to queue
+        msgsnd(msgid, &message, sizeof(message.msg_text), 0);
+
+        printf("Message %d Sent Successfully!\n", i);
+    }
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+Step 1: Create Required File for ftok()
+touch progfile
+
+Step 2: Create Sender Program File
+vi sender.c
+Drill the Code 
+
+Step 3: Compile the Program
+gcc sender.c -o sender
+
+Step 4: Run the Program
+./sender
+________________________________________
+Sample Output
+
+$ touch progfile
+$ gcc sender.c -o sender
+$ ./sender
+
+Message Queue Created Successfully...
+
+Enter Message 1: Hello
+Message 1 Sent Successfully!
+
+Enter Message 2: Welcome
+Message 2 Sent Successfully!
+
+Enter Message 3: iare Message Queue IPC
+Message 3 Sent Successfully!
+________________________________________
+Result
+Thus, the program successfully created a message queue and stored three messages in sequential order using the sender process.
+________________________________________
+Viva Questions and Answers 
+
+1. What is a message queue?
+A message queue is an IPC mechanism used for exchanging messages between processes.
+
+2. Which function is used to create a message queue?
+msgget() is used to create or access a message queue.
+
+3. What is the use of ftok()?
+ftok() generates a unique key required for creating IPC objects.
+
+4. Which function is used to send messages?
+msgsnd() is used to send messages into the queue.
+
+5. How are messages stored in a queue?
+Messages are stored in FIFO order and can also be retrieved based on message type.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment: 12.4 Retrieving Messages from Message Queues (Receiver)
+________________________________________
+Aim
+To write a C program (receiver.c) to receive messages from an existing message queue and display them on the output screen.
+________________________________________
+Objective
+•	To understand how messages are retrieved from a message queue.
+•	To learn the use of msgrcv() for receiving messages.
+•	To display messages sent by the sender process.
+•	To implement communication between two unrelated processes.
+________________________________________
+Theory
+A Message Queue is an IPC mechanism that allows processes to exchange messages asynchronously.
+•	The sender stores messages using msgsnd().
+•	The receiver retrieves messages using msgrcv().
+Important System Calls:
+•	msgget() → Access message queue
+•	msgrcv() → Receive message from queue
+•	msgctl() → Delete the queue after use
+Message Format:
+struct msg_buffer {
+    long msg_type;
+    char msg_text[100];
+};
+Messages are received based on their type or in FIFO order.
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Generate the same key using ftok().
+3.	Access the already created message queue using msgget().
+4.	Receive messages one by one using msgrcv().
+5.	Display each received message.
+6.	After receiving all messages, delete the queue using msgctl().
+7.	Stop.
+________________________________________
+Program (receiver.c Code)
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+
+// Message structure
+struct msg_buffer
+{
+    long msg_type;
+    char msg_text[100];
+};
+
+int main()
+{
+    key_t key;
+    int msgid;
+    struct msg_buffer message;
+
+    // Generate same key as sender
+    key = ftok("progfile", 65);
+
+    // Access existing message queue
+    msgid = msgget(key, 0666 | IPC_CREAT);
+
+    printf("Receiving Messages from Queue...\n\n");
+
+    // Receive 3 messages in sequence
+    for (int i = 1; i <= 3; i++)
+    {
+        msgrcv(msgid, &message, sizeof(message.msg_text), i, 0);
+
+        printf("Message %d Received: %s", i, message.msg_text);
+    }
+
+    // Destroy the message queue after receiving
+    msgctl(msgid, IPC_RMID, NULL);
+
+    printf("\nMessage Queue Deleted Successfully!\n");
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+Step 1: Ensure Sender Program Executed First
+Run sender first:
+./sender
+Send 3 messages.
+
+Step 2: Create Receiver Program File
+nano receiver.c
+Drill the Code 
+
+Step 3: Compile Receiver Program
+gcc receiver.c -o receiver
+
+Step 4: Run Receiver Program
+./receiver
+________________________________________
+Sample Output
+Sender Output:
+Enter Message 1: Hello
+Enter Message 2: Welcome
+Enter Message 3: iare IPC Message Queue
+
+Receiver Output:
+Receiving Messages from Queue...
+
+Message 1 Received: Hello
+Message 2 Received: Welcome
+Message 3 Received: iare IPC Message Queue
+
+Message Queue Deleted Successfully!
+________________________________________
+Result
+Thus, the program successfully retrieved and displayed the messages from the message queue using the receiver process.
+________________________________________
+Viva Questions and Answers 
+1. Which function is used to receive messages from a queue?
+msgrcv() is used to receive messages.
+
+2. How does the receiver access the same message queue?
+By using the same key generated with ftok().
+
+3. What is the use of msgctl()?
+msgctl() is used to control or delete a message queue.
+
+4. What happens if the receiver runs before sender?
+The receiver may block and wait until a message is available.
+
+5. Can message queues be used between unrelated processes?
+Yes, message queues allow communication between unrelated processes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Week13: Exercises on Shared Memory
+Experiment: 13.1 Sharing Memory Segment Between Processes
+________________________________________
+Aim
+To write a C program to implement Inter Process Communication (IPC) using Shared Memory, where multiple processes can access the same memory segment simultaneously.
+________________________________________
+Objective
+•	To understand the concept of Shared Memory in IPC.
+•	To learn how to create a shared memory segment using shmget().
+•	To attach shared memory using shmat().
+•	To allow communication between processes through a common memory region.
+________________________________________
+Theory
+Shared Memory is the fastest IPC mechanism because processes directly share a common memory area.
+Key Points:
+•	A shared memory segment is created by one process.
+•	Other processes can attach and access the same memory.
+•	Multiple users/processes can read/write simultaneously.
+Important Functions:
+Function	Description
+ftok()	Generates a unique key
+shmget()	Creates shared memory segment
+shmat()	Attaches shared memory to process
+shmdt()	Detaches shared memory
+shmctl()	Deletes shared memory
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Generate a unique key using ftok().
+3.	Create shared memory segment using shmget().
+4.	Attach the segment using shmat().
+5.	Write data into shared memory.
+6.	Display the stored data.
+7.	Detach shared memory using shmdt().
+8.	Remove shared memory using shmctl().
+9.	Stop.
+________________________________________
+Program (C Code)
+
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <string.h>
+
+int main()
+{
+    key_t key;
+    int shmid;
+    char *data;
+
+    // Generate unique key
+    key = ftok("shmfile", 65);
+
+    // Create shared memory segment (size 1024 bytes)
+    shmid = shmget(key, 1024, 0666 | IPC_CREAT);
+
+    // Attach shared memory to current process
+    data = (char *)shmat(shmid, (void *)0, 0);
+
+    printf("Enter data to store in shared memory: ");
+    fgets(data, 1024, stdin);
+
+    printf("\nData written in shared memory: %s", data);
+
+    // Detach shared memory
+    shmdt(data);
+
+    // Destroy shared memory segment
+    shmctl(shmid, IPC_RMID, NULL);
+
+    printf("\nShared memory detached and removed successfully.\n");
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+Step 1: Create a File for ftok()
+touch shmfile
+
+Step 2: Create Program File
+vi sharedmem.c
+Drill the Code 
+
+Step 3: Compile the Program
+gcc sharedmem.c -o shm
+
+Step 4: Run the Program
+./shm
+________________________________________
+Sample Output
+$ touch shmfile
+$ gcc sharedmem.c -o shm
+$ ./shm
+
+Enter data to store in shared memory: Hello iare Shared Memory IPC
+
+Data written in shared memory: Hello iare Shared Memory IPC
+
+Shared memory detached and removed successfully.
+________________________________________
+Result
+Thus, the program successfully created a shared memory segment, stored data, and demonstrated IPC using shared memory between processes.
+________________________________________
+Viva Questions and Answers 
+1. What is shared memory?
+Shared memory is an IPC method where multiple processes share a common memory segment.
+
+2. Which function creates a shared memory segment?
+shmget() is used to create shared memory.
+
+3. Which function attaches shared memory to a process?
+shmat() attaches the shared memory segment.
+
+4. What is the advantage of shared memory IPC?
+It is the fastest IPC mechanism since processes access memory directly.
+
+5. How is shared memory removed?
+Using:
+shmctl(shmid, IPC_RMID, NULL);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Week14: Exercises on Socket Programming
+Experiment: 14.1 Echo Client Server Program using TCP Elementary Functions
+________________________________________
+Aim
+To write a C program to implement an Echo Client-Server communication using TCP socket programming, where the server echoes back the message sent by the client.
+________________________________________
+Objective
+•	To understand TCP based client-server communication.
+•	To learn elementary socket functions such as:
+socket(), bind(), listen(), accept(), connect(), send(), recv().
+•	To implement an Echo Server that sends back the same message received from the client.
+________________________________________
+Theory
+TCP (Transmission Control Protocol): TCP is a connection-oriented protocol that provides reliable communication between client and server.
+Echo Client-Server
+•	Client sends a message to server.
+•	Server receives the message and sends it back (echo).
+•	Client displays the echoed message.
+Socket Functions Used
+Function	Purpose
+socket()	Create socket
+bind()	Bind socket to IP & port
+listen()	Server waits for connections
+accept()	Accept client connection
+connect()	Client connects to server
+send()	Send data
+recv()	Receive data
+close()	Close socket
+
+Algorithm:
+
+Server Side
+1.	Create a socket.
+2.	Bind socket to port number.
+3.	Listen for client connections.
+4.	Accept client request.
+5.	Receive message from client.
+6.	Send the same message back (echo).
+7.	Close connection.
+Client Side
+1.	Create a socket.
+2.	Connect to server using IP and port.
+3.	Send message to server.
+4.	Receive echoed message from server.
+5.	Display output.
+6.	Close socket.
+________________________________________
+Program (C Code)
+
+Echo Server Program (server.c)
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+int main()
+{
+    int server_socket, client_socket;
+    struct sockaddr_in server_addr, client_addr;
+    char buffer[1024];
+    socklen_t addr_size;
+
+    // Step 1: Create socket
+    server_socket = socket(AF_INET, SOCK_STREAM, 0);
+
+    // Step 2: Define server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(8080);
+    server_addr.sin_addr.s_addr = INADDR_ANY;
+
+    // Step 3: Bind socket
+    bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
+
+    // Step 4: Listen for connections
+    listen(server_socket, 5);
+    printf("Echo Server is running...\n");
+
+    // Step 5: Accept client connection
+    addr_size = sizeof(client_addr);
+    client_socket = accept(server_socket, (struct sockaddr*)&client_addr, &addr_size);
+
+    printf("Client connected!\n");
+
+    // Step 6: Receive message
+    recv(client_socket, buffer, sizeof(buffer), 0);
+    printf("Received from client: %s\n", buffer);
+
+    // Step 7: Echo back message
+    send(client_socket, buffer, strlen(buffer), 0);
+
+    // Step 8: Close sockets
+    close(client_socket);
+    close(server_socket);
+
+    return 0;
+}
+________________________________________
+Echo Client Program (client.c)
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+int main()
+{
+    int client_socket;
+    struct sockaddr_in server_addr;
+    char message[1024], buffer[1024];
+
+    // Step 1: Create socket
+    client_socket = socket(AF_INET, SOCK_STREAM, 0);
+
+    // Step 2: Define server address
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(8080);
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+    // Step 3: Connect to server
+    connect(client_socket, (struct sockaddr*)&server_addr, sizeof(server_addr));
+
+    printf("Enter message to send: ");
+    fgets(message, sizeof(message), stdin);
+
+    // Step 4: Send message
+    send(client_socket, message, strlen(message), 0);
+
+    // Step 5: Receive echoed message
+    recv(client_socket, buffer, sizeof(buffer), 0);
+
+    printf("Echo from server: %s\n", buffer);
+
+    // Step 6: Close socket
+    close(client_socket);
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+Step 1: Create Server and Client Files
+vi server.c
+vi client.c
+
+Step 2: Compile Both Programs
+gcc server.c -o server
+gcc client.c -o client
+
+Step 3: Run Server First
+Open Terminal 1:
+./server
+
+Step 4: Run Client Next
+Open Terminal 2:
+./client
+________________________________________
+Sample Output
+Server Side Output
+Echo Server is running...
+Client connected!
+Received from client: Hello iare Server
+
+Client Side Output
+Enter message to send: Hello iare Server
+Echo from server: Hello iare Server
+________________________________________
+Result
+Thus, the Echo Client-Server program using TCP elementary socket functions was successfully executed, and the server echoed back the client’s message.
+
+
+
+
+Viva Questions and Answers 
+
+1. What is TCP?
+TCP is a connection-oriented protocol that provides reliable communication.
+
+2. What is the purpose of an Echo server?
+To receive data from client and send back the same data.
+
+3. Which function is used by server to accept client connection?
+accept() function.
+
+4. What is the difference between TCP and UDP?
+•	TCP is connection-oriented and reliable.
+•	UDP is connectionless and faster but unreliable.
+
+5. Which port number is used in this program?
+Port 8080 is used.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Experiment: 14.2 Receiver (Reading Messages from Queue)
+________________________________________
+Aim
+To write a C program to implement a Receiver process that reads messages from an existing Message Queue and displays them.
+________________________________________
+Objective
+•	To understand message queue communication in IPC.
+•	To learn how to receive messages using msgrcv().
+•	To display messages sent by the sender process.
+•	To delete the message queue after reading.
+________________________________________
+Theory
+A Message Queue is an IPC mechanism where processes communicate by sending and receiving messages.
+•	Sender writes messages using msgsnd().
+•	Receiver reads messages using msgrcv().
+•	Messages remain in the queue until received.
+Important Functions
+Function	Description
+ftok()	Generate unique key
+msgget()	Access/create message queue
+msgrcv()	Receive message
+msgctl()	Remove queue
+________________________________________
+Algorithm
+1.	Start the program.
+2.	Generate key using ftok().
+3.	Access message queue using msgget().
+4.	Receive messages using msgrcv().
+5.	Display each received message.
+6.	Remove message queue using msgctl().
+7.	Stop.
+Program (receiver.c Code)
+
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+
+// Message structure
+struct msg_buffer
+{
+    long msg_type;
+    char msg_text[100];
+};
+
+int main()
+{
+    key_t key;
+    int msgid;
+    struct msg_buffer message;
+
+    // Generate same key used in sender
+    key = ftok("progfile", 65);
+
+    // Access message queue
+    msgid = msgget(key, 0666 | IPC_CREAT);
+
+    printf("Receiver: Reading Messages from Queue...\n\n");
+
+    // Receive 3 messages
+    for (int i = 1; i <= 3; i++)
+    {
+        msgrcv(msgid, &message, sizeof(message.msg_text), i, 0);
+
+        printf("Message %d Received: %s", i, message.msg_text);
+    }
+
+    // Delete message queue
+    msgctl(msgid, IPC_RMID, NULL);
+
+    printf("\nMessage Queue removed successfully!\n");
+
+    return 0;
+}
+________________________________________
+Steps to Execute
+Step 1: Run Sender Program First
+./sender
+Send 3 messages.
+
+Step 2: Create Receiver File
+vi receiver.c
+Drill the Code 
+
+Step 3: Compile Receiver Program
+gcc receiver.c -o receiver
+
+Step 4: Run Receiver Program
+./receiver
+________________________________________
+Sample Output
+Sender Side
+Enter Message 1: Hello
+Enter Message 2: Welcome
+Enter Message 3: iare Message Queue IPC
+
+Receiver Side
+Receiver: Reading Messages from Queue...
+
+Message 1 Received: Hello
+Message 2 Received: Welcome
+Message 3 Received: iare Message Queue IPC
+
+Message Queue removed successfully!
+________________________________________
+Result
+Thus, the receiver program successfully retrieved messages from the message queue and displayed them on the output screen.
+________________________________________
+Viva Questions and Answers 
+
+1. Which function is used to receive messages from queue?
+msgrcv() is used.
+
+2. What happens after reading all messages?
+The queue can be removed using msgctl().
+
+3. Can unrelated processes communicate using message queue?
+Yes, message queues allow unrelated processes to communicate.
+
+4. What is the role of msg_type?
+It helps in receiving messages in a particular order/type.
+
+5. What is IPC?
+IPC stands for Inter Process Communication, used for data exchange between processes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Chest sheet- Edited by KS R SAGAR
+________________________________________
+1. System Information & Status
+Command	Description
+uname	Show kernel name
+uname -a	Show all system information
+uname -r	Show kernel version
+uname -m	Show machine hardware architecture
+uname -o	Show operating system
+lscpu	Display CPU information
+lsblk	List block devices (disks, partitions)
+free -h	Show memory usage
+df -h	Disk usage by filesystem
+uptime	Show uptime and load averages
+uptime -p	Pretty uptime format
+uptime -s	Last system boot time
+________________________________________
+2. User Information
+Command	Description
+who	Show logged-in users
+w	Detailed user activity
+whoami	Show current username
+last	Login history
+env	Show environment variables
+echo $HOME	Show home directory
+export PATH=$PATH:/new/path	Add path to environment
+date	Display date/time
+timedatectl	Time zone info and settings
+________________________________________
+3. File & Directory Operations
+Command	Description
+ls	List files
+ls -l	Long listing with permissions
+ls -la	Show hidden files
+ls -lh	Human-readable sizes
+ls -lt	Sort by modification time
+cd	Go to home directory
+cd /path	Go to specific directory
+cd ..	Go up one directory
+pwd	Print current directory
+mkdir dir	Create directory
+mkdir -p	Create nested directories
+rm file	Remove file
+rm -rf dir	Remove directory recursively
+________________________________________
+4. File Viewing & Editing
+Command	Description
+cat file	View entire file
+less file	View with pagination
+head file	First 10 lines
+tail file	Last 10 lines
+tail -f logfile	Follow real-time updates
+cp src dst	Copy file
+cp -r src/ dst/	Copy directory
+mv old new	Move/rename file
+________________________________________
+5. File Search & Permissions
+Command	Description
+find /path -name "file"	Find file by name
+find /path -mtime -7	Files modified in last 7 days
+locate filename	Locate files quickly
+chmod 755 file	Change permissions
+chmod +x script.sh	Add execute permission
+chown user:group file	Change ownership
+chown -R user:group dir/	Recursive ownership change
+________________________________________
+6. Process Management
+Command	Description
+ps	Show user processes
+ps aux	Show all processes
+ps -ef --forest	Show process tree
+top	Real-time process monitor
+kill PID	Kill process
+kill -9 PID	Force kill
+killall process	Kill by name
+jobs	List background jobs
+bg %1	Background a job
+fg %1	Foreground a job
+________________________________________
+7. Network Operations
+Command	Description
+ip addr show	Show network interfaces
+ip route show	Show routing table
+ifconfig	Show interface info (legacy)
+ping host	Test connectivity
+traceroute host	Trace route
+netstat -tuln	Show listening ports
+ss -tuln	Modern socket stats
+scp src user@host:/path	Secure copy to remote
+rsync -avz src/ dest/	Sync directories
+________________________________________
+8. Text Processing
+Command	Description
+grep "pattern" file	Search text
+grep -i	Case-insensitive search
+grep -r	Recursive search
+sed 's/old/new/g' file	Replace text
+awk '{print $1}' file	Print fields
+sort file	Sort data
+uniq file	Remove duplicates
+wc file	Count lines/words
+cut -d',' -f1 file.csv	Extract column
+________________________________________
+9. Archive & Compression
+Command	Description
+tar -cf archive.tar files/	Create tar archive
+tar -xzf archive.tar.gz	Extract gzip archive
+gzip file	Compress
+gunzip file.gz	Decompress
+zip archive.zip file	Zip files
+unzip archive.zip	Extract zip
+________________________________________
+10. User & Permission Management
+Command	Description
+useradd username	Add user
+userdel username	Delete user
+usermod -aG group user	Add to group
+groupadd group	Create group
+su - user	Switch user
+sudo command	Run as root
+passwd	Change password
+
+11. Package Management
+APT (Ubuntu/Debian)
+Command	Description
+apt update	Refresh repositories
+apt upgrade	Upgrade packages
+apt install pkg	Install package
+YUM/DNF (RHEL/CentOS)
+Command	Description
+yum install pkg	Install package
+yum update	Update packages
+Snap / Flatpak
+Command	Description
+snap install pkg	Install snap
+flatpak install pkg	Install flatpak
+
+
+
+
+
+
+
+
+
+
+
+
+ C Language Cheat Sheet – Concised by KS R. Sagar
+________________________________________
+ 1. Basic Structure of C Program
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!");
+    return 0;
+}
+
+ 2. Data Types
+Type	Example
+int	int a = 10;
+float	float b = 5.5;
+double	double d = 10.123;
+char	char c = 'A';
+
+3. Format Specifiers
+Type	Specifier
+int	%d
+float	%f
+double	%lf
+char	%c
+string	%s
+
+ 4. Input / Output
+printf("Enter number: ");
+scanf("%d", &a);
+
+ 5. Operators
+Arithmetic
++ - * / %
+Relational
+== != > < >= <=
+Logical
+&& || !
+
+ 6. Conditional Statements
+if(condition) {
+}
+else if(condition) {
+}
+else {
+}
+Switch
+switch(choice) {
+    case 1: break;
+    case 2: break;
+    default: break;
+}
+
+ 7. Loops
+For Loop
+for(int i=0; i<n; i++) {
+}
+While Loop
+while(condition) {
+}
+Do-While
+do {
+} while(condition);
+
+ 8. Arrays
+int arr[5] = {1,2,3,4,5};
+
+ 9. Strings
+char name[20];
+scanf("%s", name);
+
+ 10. Functions
+int add(int a, int b) {
+    return a + b;
+}
+
+ 11. Pointers
+int a = 10;
+int *p = &a;
+printf("%d", *p);
+
+ 12. Structures
+struct Student {
+    int id;
+    char name[20];
+};
+
+ 13. File Handling
+FILE *fp;
+fp = fopen("file.txt", "r");
+fclose(fp);
+
+ 14. Memory Allocation
+int *ptr;
+ptr = (int*)malloc(5 * sizeof(int));
+free(ptr);
+
+ 15. Important Header Files
+Header	Purpose
+stdio.h	Input/Output
+stdlib.h	Memory, exit
+string.h	String functions
+math.h	Math functions
+unistd.h	System calls (Linux)
+
+
+
+ 
+ 
+
+
+
+
+
+
+ 
+ 
+ 
+  
+
+
